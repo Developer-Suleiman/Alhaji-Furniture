@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#c9a66b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="description" content="Eid Furniture - Premium quality furniture store in Cairo, Egypt. Handcrafted sofas, beds, dining tables and office furniture.">
+    <title>Eid Furniture - Premium Quality Furniture | أثاث عيد</title>
+    
+    <!-- Preconnect for faster loading -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    
+    <!-- Critical CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Google Fonts for Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-inner"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="491960205_610383332029461_6747974619045173573_n.jpg" alt="Eid Furniture Logo" class="brand-logo">
+                <span class="brand-text">Eid <span class="highlight">Furniture</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="#home" data-i18n="nav.home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about" data-i18n="nav.about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products" data-i18n="nav.products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews" data-i18n="nav.reviews">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a></li>
+                    <!-- Language Toggle -->
+                    <li class="nav-item">
+                        <button class="lang-toggle" id="langToggle" title="Switch Language">
+                            <span class="lang-icon">🌐</span>
+                            <span class="lang-text" id="langText">عربي</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link cart-icon" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                    <!-- User Authentication -->
+                    <li class="nav-item auth-buttons" id="authButtons">
+                        <a class="nav-link btn-login" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                        <a class="nav-link btn-register" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            <i class="fas fa-user-plus"></i> Register
+                        </a>
+                    </li>
+                    <!-- User Dropdown (shown when logged in) -->
+                    <li class="nav-item dropdown user-dropdown" id="userDropdown" style="display: none;">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <div class="user-avatar">
+                                <div class="default-avatar" id="userAvatarWrapper">
+                                    <i class="fas fa-user" id="userAvatarIcon"></i>
+                                    <img src="" alt="User" id="userAvatar" style="display: none;">
+                                </div>
+                            </div>
+                            <span class="user-name" id="userName">User</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end user-menu">
+                            <li class="dropdown-header">
+                                <div class="user-info">
+                                    <div class="default-avatar small" id="dropdownAvatarWrapper">
+                                        <i class="fas fa-user" id="dropdownAvatarIcon"></i>
+                                        <img src="" alt="User" id="dropdownAvatar" style="display: none;">
+                                    </div>
+                                    <div>
+                                        <strong id="dropdownName">User Name</strong>
+                                        <small id="dropdownEmail">user@email.com</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="myAccountBtn"><i class="fas fa-user"></i> My Account</a></li>
+                            <li><a class="dropdown-item" href="#" id="myOrdersBtn"><i class="fas fa-shopping-bag"></i> My Orders</a></li>
+                            <li><a class="dropdown-item" href="#" id="wishlistBtn"><i class="fas fa-heart"></i> Wishlist</a></li>
+                            <li><a class="dropdown-item" href="#" id="settingsBtn"><i class="fas fa-cog"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                    <!-- Admin link - only visible to admins (controlled by JS) -->
+                    <li class="nav-item admin-nav-item" id="adminNavItem" style="display: none;">
+                        <a class="nav-link admin-link" href="admin.html">
+                            <i class="fas fa-user-shield"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-slider">
+            <div class="slide active">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920');"></div>
+                <div class="slide-content">
+                    <h1 data-i18n="hero.slide1.title">Elevate Your Living Space</h1>
+                    <p data-i18n="hero.slide1.subtitle">Discover timeless elegance with our handcrafted furniture collection</p>
+                    <a href="#products" class="btn btn-primary btn-lg" data-i18n="hero.shopNow">Shop Now</a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1920');"></div>
+                <div class="slide-content">
+                    <h1 data-i18n="hero.slide2.title">Comfort Meets Style</h1>
+                    <p data-i18n="hero.slide2.subtitle">Experience luxury living with our premium furniture designs</p>
+                    <a href="#products" class="btn btn-primary btn-lg" data-i18n="hero.explore">Explore Collection</a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920');"></div>
+                <div class="slide-content">
+                    <h1 data-i18n="hero.slide3.title">Modern Living Redefined</h1>
+                    <p data-i18n="hero.slide3.subtitle">Transform your home into a sanctuary of style and comfort</p>
+                    <a href="#gallery" class="btn btn-primary btn-lg" data-i18n="nav.gallery">View Gallery</a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920');"></div>
+                <div class="slide-content">
+                    <h1 data-i18n="hero.slide4.title">Bedroom Elegance</h1>
+                    <p data-i18n="hero.slide4.subtitle">Create your perfect retreat with our luxurious bedroom collections</p>
+                    <a href="#products" class="btn btn-primary btn-lg">Shop Bedroom</a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1617806118233-18e1de247200?w=1920');"></div>
+                <div class="slide-content">
+                    <h1 data-i18n="hero.slide5.title">Dining Excellence</h1>
+                    <p data-i18n="hero.slide5.subtitle">Gather in style with our stunning dining room furniture sets</p>
+                    <a href="#products" class="btn btn-primary btn-lg">Shop Dining</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative Corners -->
+        <div class="hero-decoration corner-tl"></div>
+        <div class="hero-decoration corner-br"></div>
+        
+        <!-- Navigation Arrows -->
+        <div class="slider-nav">
+            <button class="prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        
+        <!-- Dots Navigation -->
+        <div class="slider-dots"></div>
+        
+        <!-- Slide Counter -->
+        <div class="slide-counter">
+            <span class="current">01</span>
+            <span class="separator">/</span>
+            <span class="total">05</span>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="slider-progress">
+            <div class="slider-progress-bar"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <i class="fas fa-truck"></i>
+                        <h4 data-i18n="features.freeDelivery">Free Delivery</h4>
+                        <p data-i18n="features.freeDeliveryDesc">On orders over 5000 EGP</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4 data-i18n="features.warranty">5 Year Warranty</h4>
+                        <p data-i18n="features.warrantyDesc">Quality guaranteed</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <i class="fas fa-undo"></i>
+                        <h4 data-i18n="features.returns">Easy Returns</h4>
+                        <p data-i18n="features.returnsDesc">30-day return policy</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <i class="fas fa-headset"></i>
+                        <h4 data-i18n="features.support">24/7 Support</h4>
+                        <p data-i18n="features.supportDesc">Expert assistance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800" alt="About Eid Furniture" class="img-fluid">
+                        <div class="experience-badge">
+                            <span class="years">25+</span>
+                            <span class="text" data-i18n="about.yearsExcellence">Years of Excellence</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <span class="section-subtitle" data-i18n="about.subtitle">About Us</span>
+                        <h2 data-i18n="about.title">Crafting Dreams Into Reality Since 1998</h2>
+                        <p data-i18n="about.description">At Eid Furniture, we believe that every piece of furniture tells a story. Our master craftsmen combine traditional techniques with modern innovation to create timeless pieces that transform houses into homes.</p>
+                        <div class="about-features">
+                            <div class="about-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-i18n="about.feature1">Handcrafted Excellence</span>
+                            </div>
+                            <div class="about-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-i18n="about.feature2">Sustainable Materials</span>
+                            </div>
+                            <div class="about-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-i18n="about.feature3">Custom Designs Available</span>
+                            </div>
+                            <div class="about-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-i18n="about.feature4">Premium Quality Guaranteed</span>
+                            </div>
+                        </div>
+                        <a href="#contact" class="btn btn-primary" data-i18n="about.learnMore">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle" data-i18n="products.subtitle">Our Collection</span>
+                <h2 data-i18n="products.title">Featured Products</h2>
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all" data-i18n="products.filterAll">All</button>
+                <button class="filter-btn" data-filter="living" data-i18n="products.filterLiving">Living Room</button>
+                <button class="filter-btn" data-filter="bedroom" data-i18n="products.filterBedroom">Bedroom</button>
+                <button class="filter-btn" data-filter="dining" data-i18n="products.filterDining">Dining</button>
+                <button class="filter-btn" data-filter="office" data-i18n="products.filterOffice">Office</button>
+                <button class="filter-btn" data-filter="wood" data-i18n="products.filterWood">Wood Materials</button>
+                <button class="filter-btn" data-filter="accessories" data-i18n="products.filterAccessories">Accessories</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+
+            <div class="text-center mt-5">
+                <button class="btn btn-outline-primary load-more" id="loadMore" data-i18n="products.loadMore">Load More Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle" data-i18n="gallery.subtitle">Inspiration</span>
+                <h2 data-i18n="gallery.title">Our Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item large" data-category="living">
+                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800" alt="Living Room">
+                    <div class="gallery-overlay">
+                        <span data-i18n="gallery.modernLiving">Modern Living Room</span>
+                        <button class="gallery-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="bedroom">
+                    <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600" alt="Bedroom">
+                    <div class="gallery-overlay">
+                        <span data-i18n="gallery.elegantBedroom">Elegant Bedroom</span>
+                        <button class="gallery-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="dining">
+                    <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600" alt="Dining">
+                    <div class="gallery-overlay">
+                        <span data-i18n="gallery.diningExcellence">Dining Excellence</span>
+                        <button class="gallery-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="gallery-item tall" data-category="office">
+                    <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600" alt="Office">
+                    <div class="gallery-overlay">
+                        <span data-i18n="gallery.homeOffice">Home Office</span>
+                        <button class="gallery-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="living">
+                    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600" alt="Sofa">
+                    <div class="gallery-overlay">
+                        <span data-i18n="gallery.premiumSofas">Premium Sofas</span>
+                        <button class="gallery-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="gallery-item wide" data-category="bedroom">
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800" alt="Bedroom Set">
+                    <div class="gallery-overlay">
+                        <span data-i18n="gallery.bedroomSets">Complete Bedroom Sets</span>
+                        <button class="gallery-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section (Dynamic) -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle" data-i18n="reviews.subtitle">Customer Reviews</span>
+                <h2 data-i18n="reviews.title">What Our Customers Say</h2>
+                <p class="section-desc" data-i18n="reviews.description">Real reviews from our valued customers</p>
+            </div>
+            
+            <!-- Reviews Summary -->
+            <div class="reviews-summary" id="reviewsSummary">
+                <div class="summary-stats">
+                    <div class="average-rating">
+                        <span class="rating-number" id="avgRating">0.0</span>
+                        <div class="rating-stars" id="avgStars"></div>
+                        <span class="total-reviews"><span data-i18n="reviews.basedOn">Based on</span> <span id="totalReviews">0</span> <span data-i18n="reviews.reviewsText">reviews</span></span>
+                    </div>
+                    <div class="rating-breakdown" id="ratingBreakdown">
+                        <!-- Rating bars will be generated dynamically -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Write Review Button -->
+            <div class="write-review-container text-center">
+                <button class="btn btn-primary btn-lg" id="writeReviewBtn" onclick="openReviewModal()">
+                    <i class="fas fa-pen"></i> <span data-i18n="reviews.writeReview">Write a Review</span>
+                </button>
+            </div>
+            
+            <!-- Reviews List -->
+            <div class="reviews-list" id="reviewsList">
+                <div class="no-reviews" id="noReviews">
+                    <i class="fas fa-comment-slash"></i>
+                    <h4 data-i18n="reviews.noReviews">No reviews yet</h4>
+                    <p data-i18n="reviews.beFirst">Be the first to share your experience with Eid Furniture!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Write Review Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-star"></i> Write a Review</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="reviewForm">
+                        <div class="mb-4 text-center">
+                            <label class="form-label">Your Rating</label>
+                            <div class="star-rating" id="starRating">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="reviewRating" value="0">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Review Title</label>
+                            <input type="text" class="form-control" id="reviewTitle" placeholder="Summarize your experience" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Your Review</label>
+                            <textarea class="form-control" id="reviewText" rows="4" placeholder="Tell us about your experience with our products or service..." required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Product Purchased (Optional)</label>
+                            <select class="form-select" id="reviewProduct">
+                                <option value="">Select a product</option>
+                                <!-- Products will be loaded dynamically -->
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-paper-plane"></i> Submit Review
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 data-i18n="newsletter.title">Subscribe to Our Newsletter</h2>
+                <p data-i18n="newsletter.description">Get exclusive offers, new arrivals, and design inspiration delivered to your inbox.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" data-i18n-placeholder="newsletter.placeholder" placeholder="Enter your email address" required>
+                    <button type="submit" data-i18n="newsletter.subscribe">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle" data-i18n="contact.subtitle">Get In Touch</span>
+                <h2 data-i18n="contact.title">Contact Us</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4 data-i18n="contact.visitShowroom">Visit Our Showroom</h4>
+                                <p data-i18n="contact.address">Abbas Al-Akkad Street, Nasr City<br>Cairo, Egypt</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <h4 data-i18n="contact.callUs">Call Us</h4>
+                                <p dir="ltr">+20 2 2275 1234</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4 data-i18n="contact.emailUs">Email Us</h4>
+                                <p>info@eidfurniture.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4 data-i18n="contact.workingHours">Working Hours</h4>
+                                <p data-i18n="contact.hours">Sat - Thu: 10AM - 10PM<br>Friday: 2PM - 10PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <form class="contact-form" id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" id="name" name="name" required>
+                                    <label for="name" data-i18n="contact.form.name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" id="email" name="email" required>
+                                    <label for="email" data-i18n="contact.form.email">Your Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="tel" id="phone" name="phone">
+                                    <label for="phone" data-i18n="contact.form.phone">Phone Number</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select id="subject" name="subject" required>
+                                        <option value="" data-i18n="contact.form.selectSubject">Select Subject</option>
+                                        <option value="inquiry" data-i18n="contact.form.inquiry">Product Inquiry</option>
+                                        <option value="custom" data-i18n="contact.form.custom">Custom Order</option>
+                                        <option value="support" data-i18n="contact.form.support">Support</option>
+                                        <option value="feedback" data-i18n="contact.form.feedback">Feedback</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <label for="message" data-i18n="contact.form.message">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <span data-i18n="contact.form.send">Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand">
+                        <img src="491960205_610383332029461_6747974619045173573_n.jpg" alt="Eid Furniture Logo" class="brand-logo">
+                        <span class="brand-text">Eid <span class="highlight">Furniture</span></span>
+                    </div>
+                    <p data-i18n="footer.description">Creating beautiful spaces with premium quality furniture since 1998. Located in the heart of Cairo, Egypt. Our commitment to excellence ensures your home reflects your unique style.</p>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="footer.address">Abbas Al-Akkad St., Nasr City, Cairo, Egypt</span></p>
+                        <p dir="ltr"><i class="fas fa-phone"></i> +20 2 2275 1234</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://facebook.com" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/20222751234" target="_blank" rel="noopener" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h4 data-i18n="footer.quickLinks">Quick Links</h4>
+                    <ul>
+                        <li><a href="#home" data-i18n="nav.home">Home</a></li>
+                        <li><a href="#about" data-i18n="nav.about">About Us</a></li>
+                        <li><a href="#products" data-i18n="nav.products">Products</a></li>
+                        <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+                        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 data-i18n="footer.categories">Categories</h4>
+                    <ul>
+                        <li><a href="#products" class="category-link" data-category="living-room" data-i18n="categories.livingRoom">Living Room</a></li>
+                        <li><a href="#products" class="category-link" data-category="bedroom" data-i18n="categories.bedroom">Bedroom</a></li>
+                        <li><a href="#products" class="category-link" data-category="dining" data-i18n="categories.diningRoom">Dining Room</a></li>
+                        <li><a href="#products" class="category-link" data-category="office" data-i18n="categories.office">Home Office</a></li>
+                        <li><a href="#products" class="category-link" data-category="outdoor" data-i18n="categories.outdoor">Outdoor</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 data-i18n="footer.customerService">Customer Service</h4>
+                    <ul>
+                        <li><a href="#contact" class="service-link" data-service="shipping" data-i18n="footer.shipping">Shipping Info</a></li>
+                        <li><a href="#contact" class="service-link" data-service="returns" data-i18n="footer.returns">Returns & Exchanges</a></li>
+                        <li><a href="#contact" class="service-link" data-service="faq" data-i18n="footer.faq">FAQ</a></li>
+                        <li><a href="#contact" class="service-link" data-service="warranty" data-i18n="footer.warranty">Warranty</a></li>
+                        <li><a href="#" class="service-link" data-service="track-order" data-bs-toggle="modal" data-bs-target="#trackOrderModal" data-i18n="footer.trackOrder">Track Order</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">&copy; <script>document.write(new Date().getFullYear())</script> Eid Furniture - Cairo, Egypt. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="admin.html" class="admin-link"><i class="fas fa-lock"></i> Admin Panel</a>
+                </div>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Fawry_logo.svg/512px-Fawry_logo.svg.png" alt="Fawry" class="payment-fawry" style="height: 20px; margin: 0 5px;">
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-shopping-cart"></i> <span data-i18n="cart.title">Your Cart</span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="cart-items" id="cartItems">
+                        <!-- Cart items will be loaded dynamically -->
+                    </div>
+                    <div class="cart-empty" id="cartEmpty">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p data-i18n="cart.empty">Your cart is empty</p>
+                        <a href="#products" class="btn btn-primary" data-bs-dismiss="modal" data-i18n="cart.startShopping">Start Shopping</a>
+                    </div>
+                </div>
+                <div class="modal-footer cart-footer" id="cartFooter">
+                    <div class="cart-total">
+                        <span data-i18n="cart.total">Total:</span>
+                        <span class="total-amount">0 EGP</span>
+                    </div>
+                    <button class="btn btn-primary checkout-btn" data-i18n="cart.checkout">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Quick View Modal -->
+    <div class="modal fade" id="quickViewModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" data-i18n="product.details">Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="quickViewContent">
+                    <!-- Product details will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close"><i class="fas fa-times"></i></button>
+        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <img src="" alt="Gallery Image" id="lightboxImage">
+        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- AI Chatbot -->
+    <div class="chatbot-container" id="chatbot">
+        <div class="chatbot-toggle" id="chatbotToggle">
+            <i class="fas fa-comments"></i>
+            <span class="chatbot-badge">1</span>
+        </div>
+        
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=eid" alt="AI Assistant">
+                </div>
+                <div class="chatbot-info">
+                    <h4 data-i18n="chatbot.name">Eid Assistant</h4>
+                    <span class="status"><span class="status-dot"></span> <span data-i18n="chatbot.online">Online</span></span>
+                </div>
+                <button class="chatbot-close" id="chatbotClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbotMessages">
+                <!-- Messages will be added dynamically -->
+            </div>
+            
+            <div class="chatbot-suggestions" id="chatbotSuggestions">
+                <button class="suggestion-btn" data-query="What products do you have?" data-i18n="chatbot.products">Products</button>
+                <button class="suggestion-btn" data-query="What are your delivery options?" data-i18n="chatbot.delivery">Delivery</button>
+                <button class="suggestion-btn" data-query="What is your return policy?" data-i18n="chatbot.returns">Returns</button>
+                <button class="suggestion-btn" data-query="How can I contact support?" data-i18n="chatbot.support">Support</button>
+            </div>
+            
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" data-i18n-placeholder="chatbot.placeholder" placeholder="Type your message...">
+                <button id="chatbotSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade auth-modal" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="auth-header">
+                        <h4 class="modal-title" data-i18n="auth.welcomeBack">Welcome Back!</h4>
+                        <p>Sign in to your account</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Email" required>
+                            <label for="loginEmail"><i class="fas fa-envelope"></i> Email Address</label>
+                        </div>
+                        <div class="form-floating mb-3 password-field">
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                            <label for="loginPassword"><i class="fas fa-lock"></i> Password</label>
+                            <button type="button" class="password-toggle" onclick="togglePassword('loginPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                            </div>
+                            <a href="#" class="forgot-password" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" data-bs-dismiss="modal">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 btn-auth">
+                            <i class="fas fa-sign-in-alt"></i> Sign In
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p>Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade auth-modal" id="registerModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="auth-header">
+                        <h4 class="modal-title">Create Account</h4>
+                        <p>Join us and start shopping</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="registerFirstName" placeholder="First Name" required>
+                                    <label for="registerFirstName"><i class="fas fa-user"></i> First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="registerLastName" placeholder="Last Name" required>
+                                    <label for="registerLastName"><i class="fas fa-user"></i> Last Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="registerEmail" placeholder="Email" required>
+                            <label for="registerEmail"><i class="fas fa-envelope"></i> Email Address</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" id="registerPhone" placeholder="Phone">
+                            <label for="registerPhone"><i class="fas fa-phone"></i> Phone Number (Optional)</label>
+                        </div>
+                        <div class="form-floating mb-3 password-field">
+                            <input type="password" class="form-control" id="registerPassword" placeholder="Password" required minlength="8">
+                            <label for="registerPassword"><i class="fas fa-lock"></i> Password</label>
+                            <button type="button" class="password-toggle" onclick="togglePassword('registerPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength mb-3" id="passwordStrength">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthFill"></div>
+                            </div>
+                            <small id="strengthText">Password strength</small>
+                        </div>
+                        <div class="form-floating mb-3 password-field">
+                            <input type="password" class="form-control" id="registerConfirmPassword" placeholder="Confirm Password" required>
+                            <label for="registerConfirmPassword"><i class="fas fa-lock"></i> Confirm Password</label>
+                            <button type="button" class="password-toggle" onclick="togglePassword('registerConfirmPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">
+                                I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                            </label>
+                        </div>
+                        <div class="form-check mb-4">
+                            <input type="checkbox" class="form-check-input" id="subscribeNewsletter">
+                            <label class="form-check-label" for="subscribeNewsletter">
+                                Subscribe to newsletter for exclusive offers
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 btn-auth">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal fade auth-modal" id="forgotPasswordModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="auth-header">
+                        <h4 class="modal-title">Reset Password</h4>
+                        <p>Enter your email to receive reset link</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="forgotPasswordForm">
+                        <div class="reset-icon">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="email" class="form-control" id="resetEmail" placeholder="Email" required>
+                            <label for="resetEmail"><i class="fas fa-envelope"></i> Email Address</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 btn-auth">
+                            <i class="fas fa-paper-plane"></i> Send Reset Link
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p>Remember your password? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Account Modal -->
+    <div class="modal fade auth-modal" id="accountModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-user-circle"></i> My Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="account-tabs">
+                        <ul class="nav nav-pills mb-4" id="accountTabs">
+                            <li class="nav-item">
+                                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#profileTab">Profile</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#ordersTab">Orders</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#wishlistTab">
+                                    Wishlist <span class="badge bg-danger wishlist-count-badge" id="wishlistTabBadge" style="display: none;">0</span>
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#messagesTab">Messages</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#addressTab">Addresses</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#securityTab">Security</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <!-- Profile Tab -->
+                            <div class="tab-pane fade show active" id="profileTab">
+                                <div class="profile-header">
+                                    <div class="profile-avatar">
+                                        <div class="avatar-upload-wrapper" id="profileAvatarWrapper">
+                                            <i class="fas fa-user-circle" id="profileAvatarIcon"></i>
+                                            <img src="" alt="User" id="profileAvatar" style="display: none;">
+                                        </div>
+                                        <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                                        <button class="btn btn-sm btn-outline-primary change-avatar" onclick="document.getElementById('avatarUpload').click()"><i class="fas fa-camera"></i> Change Photo</button>
+                                    </div>
+                                    <div class="profile-info">
+                                        <h4 id="profileName">User Name</h4>
+                                        <p id="profileEmail">user@email.com</p>
+                                        <span class="badge bg-primary">Premium Member</span>
+                                    </div>
+                                </div>
+                                <form id="profileForm">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="profileFirstName">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="profileLastName">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="profileEmailInput" readonly>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Phone</label>
+                                            <input type="tel" class="form-control" id="profilePhone">
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label class="form-label">Date of Birth</label>
+                                            <input type="date" class="form-control" id="profileDOB">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </form>
+                            </div>
+                            <!-- Orders Tab -->
+                            <div class="tab-pane fade" id="ordersTab">
+                                <div class="orders-list" id="userOrders">
+                                    <div class="empty-state">
+                                        <i class="fas fa-shopping-bag"></i>
+                                        <h5>No orders yet</h5>
+                                        <p>Start shopping to see your orders here</p>
+                                        <a href="#products" class="btn btn-primary" data-bs-dismiss="modal">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Wishlist Tab -->
+                            <div class="tab-pane fade" id="wishlistTab">
+                                <div class="wishlist-container" id="wishlistContainer">
+                                    <div class="empty-state" id="emptyWishlist">
+                                        <i class="fas fa-heart"></i>
+                                        <h5>Your wishlist is empty</h5>
+                                        <p>Save items you love by clicking the heart icon on products</p>
+                                        <a href="#products" class="btn btn-primary" data-bs-dismiss="modal">Browse Products</a>
+                                    </div>
+                                    <div class="wishlist-items" id="wishlistItems" style="display: none;">
+                                        <!-- Wishlist items will be loaded dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Messages Tab -->
+                            <div class="tab-pane fade" id="messagesTab">
+                                <div class="user-messages-list" id="userMessagesList">
+                                    <!-- Messages will be loaded dynamically -->
+                                </div>
+                            </div>
+                            <!-- Addresses Tab -->
+                            <div class="tab-pane fade" id="addressTab">
+                                <div class="addresses-list" id="userAddresses">
+                                    <div class="address-card add-new">
+                                        <i class="fas fa-plus"></i>
+                                        <span>Add New Address</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Security Tab -->
+                            <div class="tab-pane fade" id="securityTab">
+                                <form id="securityForm">
+                                    <h6 class="mb-3">Change Password</h6>
+                                    <div class="mb-3">
+                                        <label class="form-label">Current Password</label>
+                                        <input type="password" class="form-control" id="currentPassword">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">New Password</label>
+                                        <input type="password" class="form-control" id="newPassword">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Confirm New Password</label>
+                                        <input type="password" class="form-control" id="confirmNewPassword">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update Password</button>
+                                    <hr>
+                                    <h6 class="mb-3">Two-Factor Authentication</h6>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="enable2FA">
+                                        <label class="form-check-label" for="enable2FA">Enable 2FA for extra security</label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Track Order Modal -->
+    <div class="modal fade" id="trackOrderModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-shipping-fast"></i> <span data-i18n="footer.trackOrder">Track Your Order</span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="trackOrderForm">
+                        <div class="mb-3">
+                            <label class="form-label" data-i18n="track.orderId">Order ID</label>
+                            <input type="text" class="form-control" id="trackOrderId" placeholder="Enter your order ID (e.g., ORD-123456)" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" data-i18n="track.email">Email Address</label>
+                            <input type="email" class="form-control" id="trackOrderEmail" placeholder="Enter the email used for order" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-search"></i> <span data-i18n="track.submit">Track Order</span>
+                        </button>
+                    </form>
+                    <div id="trackOrderResult" class="mt-4" style="display: none;">
+                        <hr>
+                        <div class="order-status-card">
+                            <h6 class="text-primary mb-3"><i class="fas fa-box"></i> Order Status</h6>
+                            <div id="orderStatusContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal (for Shipping, Returns, FAQ, Warranty) -->
+    <div class="modal fade" id="infoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalTitle"><i class="fas fa-info-circle"></i> Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="infoModalBody">
+                    <!-- Content loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK (for real-time sync) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Firebase Config (edit with your credentials for real-time sync) -->
+    <script src="js/firebase-config.js?v=3.0"></script>
+    
+    <script src="js/products.js?v=3.0"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Initialize Firebase sync for products -->
+    <script>
+        // Initialize Firebase product sync after page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            if (typeof initProductsFirebaseSync === 'function') {
+                await initProductsFirebaseSync();
+                // Refresh product display after sync
+                if (typeof displayProducts === 'function') {
+                    displayProducts(products);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
