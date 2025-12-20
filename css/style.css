@@ -37,8 +37,18 @@ body.rtl {
     direction: rtl;
 }
 
-body.rtl .navbar-nav {
-    flex-direction: row-reverse;
+/* RTL navbar - only horizontal on desktop */
+@media (min-width: 992px) {
+    body.rtl .navbar-nav {
+        flex-direction: row-reverse;
+    }
+}
+
+/* RTL mobile menu - always vertical */
+@media (max-width: 991.98px) {
+    body.rtl .navbar-nav {
+        flex-direction: column !important;
+    }
 }
 
 body.rtl .navbar-brand {
@@ -2008,6 +2018,7 @@ body.rtl .footer-contact i {
     .navbar-nav {
         padding: 20px 0;
         gap: 5px;
+        flex-direction: column !important;
     }
     
     .nav-link {
