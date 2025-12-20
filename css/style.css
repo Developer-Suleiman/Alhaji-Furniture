@@ -44,10 +44,27 @@ body.rtl {
     }
 }
 
-/* RTL mobile menu - always vertical */
+/* RTL mobile menu - always vertical like English */
 @media (max-width: 991.98px) {
     body.rtl .navbar-nav {
         flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+    }
+    
+    body.rtl .navbar-nav .nav-item {
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    body.rtl .navbar-nav .nav-link {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    body.rtl .navbar-collapse {
+        direction: rtl;
     }
 }
 
