@@ -409,6 +409,20 @@ body.rtl .footer-contact i {
     text-decoration: none;
 }
 
+.navbar-brand .brand-logo {
+    height: 45px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand:hover .brand-logo {
+    transform: scale(1.05);
+}
+
+.navbar.scrolled .brand-logo {
+    height: 40px;
+}
+
 /* Modern Logo Image Styling */
 .brand-logo {
     width: 50px;
@@ -1557,12 +1571,13 @@ body.rtl .footer-contact i {
 }
 
 .footer-brand .brand-logo {
-    width: 55px;
-    height: 55px;
-    border-radius: 12px;
-    object-fit: cover;
-    box-shadow: 0 4px 20px rgba(201, 166, 107, 0.4);
-    border: 2px solid var(--primary-color);
+    height: 50px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.footer-brand:hover .brand-logo {
+    transform: scale(1.05);
 }
 
 .footer p {

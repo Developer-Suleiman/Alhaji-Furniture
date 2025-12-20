@@ -57,19 +57,14 @@ body {
 }
 
 .login-header .login-logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 16px;
-    object-fit: cover;
-    box-shadow: 0 8px 30px rgba(201, 166, 107, 0.4);
-    border: 3px solid var(--primary-color);
+    height: 60px;
+    width: auto;
     margin-bottom: 20px;
     transition: all 0.3s ease;
 }
 
 .login-header .login-logo:hover {
-    transform: scale(1.05) rotate(2deg);
-    box-shadow: 0 12px 40px rgba(201, 166, 107, 0.5);
+    transform: scale(1.05);
 }
 
 .login-header .brand-text-login {
@@ -213,17 +208,13 @@ body {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.sidebar-header .brand-logo {
-    width: 45px;
-    height: 45px;
-    border-radius: 10px;
-    object-fit: cover;
-    box-shadow: 0 4px 15px rgba(201, 166, 107, 0.3);
-    border: 2px solid var(--primary-color);
+.sidebar-header .sidebar-logo {
+    height: 40px;
+    width: auto;
     transition: all 0.3s ease;
 }
 
-.sidebar-header .brand-logo:hover {
+.sidebar-header .sidebar-logo:hover {
     transform: scale(1.05);
 }
 
