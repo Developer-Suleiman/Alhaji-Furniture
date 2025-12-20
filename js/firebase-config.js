@@ -1,4 +1,4 @@
-// Firebase Configuration for Eid Furniture
+// Firebase Configuration for Alhaji Furniture
 // Real-time database for syncing products, orders, and data across all devices
 
 // ============ FIREBASE SETUP INSTRUCTIONS ============

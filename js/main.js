@@ -1,8 +1,8 @@
-// Main JavaScript file for Eid Furniture
+// Main JavaScript file for Alhaji Furniture
 
 // Storage keys
-const REVIEWS_STORAGE_KEY = 'eidFurnitureReviews';
-const ORDERS_STORAGE_KEY = 'eidFurnitureOrders';
+const REVIEWS_STORAGE_KEY = 'alhajiFurnitureReviews';
+const ORDERS_STORAGE_KEY = 'alhajiFurnitureOrders';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Hide preloader
@@ -1087,7 +1087,7 @@ function initFooterServiceLinks() {
             content: `
                 <div class="info-section">
                     <h5>Our Warranty Promise</h5>
-                    <p>At Eid Furniture, we stand behind the quality of our products. All furniture comes with our comprehensive warranty coverage.</p>
+                    <p>At Alhaji Furniture, we stand behind the quality of our products. All furniture comes with our comprehensive warranty coverage.</p>
                     
                     <h5 class="mt-4">Warranty Coverage</h5>
                     <table class="table table-bordered">

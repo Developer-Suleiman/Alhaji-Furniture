@@ -1,12 +1,12 @@
-// Eid Furniture AI Chatbot
+// Alhaji Furniture AI Chatbot
 
 // Knowledge Base for the chatbot
 const knowledgeBase = {
     greetings: {
         patterns: ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening', 'howdy', 'greetings'],
         responses: [
-            "Hello! 👋 Welcome to Eid Furniture. How can I help you today?",
-            "Hi there! I'm your Eid Furniture assistant. What can I do for you?",
+            "Hello! 👋 Welcome to Alhaji Furniture. How can I help you today?",
+            "Hi there! I'm your Alhaji Furniture assistant. What can I do for you?",
             "Welcome! 🪑 I'm here to help you find the perfect furniture. What are you looking for?"
         ]
     },
@@ -111,7 +111,7 @@ const knowledgeBase = {
     goodbye: {
         patterns: ['bye', 'goodbye', 'see you', 'later', 'exit', 'quit'],
         responses: [
-            "Goodbye! 👋 Thanks for chatting with Eid Furniture. Have a great day!",
+            "Goodbye! 👋 Thanks for chatting with Alhaji Furniture. Have a great day!",
             "See you soon! Don't forget to check out our latest collection! 🛋️",
             "Bye! Feel free to come back anytime. Happy furniture shopping! 🏠"
         ]
@@ -178,7 +178,7 @@ class EidChatbot {
         
         // Initial greeting (delayed)
         setTimeout(() => {
-            this.addBotMessage("Hello! 👋 I'm your Eid Furniture assistant. How can I help you today?");
+            this.addBotMessage("Hello! 👋 I'm your Alhaji Furniture assistant. How can I help you today?");
         }, 1000);
     }
     

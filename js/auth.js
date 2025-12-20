@@ -1,8 +1,8 @@
-// Authentication System for Eid Furniture
+// Authentication System for Alhaji Furniture
 
 // Storage Keys
-const AUTH_STORAGE_KEY = 'eidFurnitureAuth';
-const USERS_STORAGE_KEY = 'eidFurnitureUsers';
+const AUTH_STORAGE_KEY = 'alhajiFurnitureAuth';
+const USERS_STORAGE_KEY = 'alhajiFurnitureUsers';
 
 // Current User State
 let currentUser = null;
@@ -313,7 +313,7 @@ function handleRegister(e) {
     document.getElementById('registerForm').reset();
 
     // Show success message
-    showToast(`Welcome to Eid Furniture, ${firstName}!`, 'success');
+    showToast(`Welcome to Alhaji Furniture, ${firstName}!`, 'success');
 }
 
 // Handle Forgot Password

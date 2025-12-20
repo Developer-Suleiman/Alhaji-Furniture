@@ -1,7 +1,7 @@
-// Internationalization (i18n) Module for Eid Furniture
+// Internationalization (i18n) Module for Alhaji Furniture
 // Supports English and Arabic with RTL support
 
-const LANG_STORAGE_KEY = 'eidFurnitureLang';
+const LANG_STORAGE_KEY = 'alhajiFurnitureLang';
 
 // Translations
 const translations = {
@@ -41,7 +41,7 @@ const translations = {
         // About Section
         'about.subtitle': 'About Us',
         'about.title': 'Crafting Dreams Into Reality Since 1998',
-        'about.description': 'At Eid Furniture, we believe that every piece of furniture tells a story. Our master craftsmen combine traditional techniques with modern innovation to create timeless pieces that transform houses into homes.',
+        'about.description': 'At Alhaji Furniture, we believe that every piece of furniture tells a story. Our master craftsmen combine traditional techniques with modern innovation to create timeless pieces that transform houses into homes.',
         'about.yearsExcellence': 'Years of Excellence',
         'about.feature1': 'Handcrafted Excellence',
         'about.feature2': 'Sustainable Materials',
@@ -86,7 +86,7 @@ const translations = {
         'reviews.description': 'Real reviews from our valued customers',
         'reviews.writeReview': 'Write a Review',
         'reviews.noReviews': 'No reviews yet',
-        'reviews.beFirst': 'Be the first to share your experience with Eid Furniture!',
+        'reviews.beFirst': 'Be the first to share your experience with Alhaji Furniture!',
         'reviews.basedOn': 'Based on',
         'reviews.reviewsText': 'reviews',
         
@@ -127,7 +127,7 @@ const translations = {
         'footer.faq': 'FAQ',
         'footer.warranty': 'Warranty',
         'footer.trackOrder': 'Track Order',
-        'footer.copyright': '© 2024 Eid Furniture - Cairo, Egypt. All Rights Reserved.',
+        'footer.copyright': '© 2024 Alhaji Furniture - Cairo, Egypt. All Rights Reserved.',
         
         // Cart
         'cart.title': 'Your Cart',
@@ -148,7 +148,7 @@ const translations = {
         'chatbot.returns': 'Returns',
         'chatbot.support': 'Support',
         'chatbot.placeholder': 'Type your message...',
-        'chatbot.welcome': 'Hello! Welcome to Eid Furniture. How can I help you today?',
+        'chatbot.welcome': 'Hello! Welcome to Alhaji Furniture. How can I help you today?',
         
         // Auth
         'auth.welcomeBack': 'Welcome Back!',
@@ -469,8 +469,8 @@ function translatePage() {
     
     // Update page title
     document.title = currentLang === 'ar' 
-        ? 'أثاث عيد - أثاث فاخر عالي الجودة' 
-        : 'Eid Furniture - Premium Quality Furniture';
+        ? 'أثاث الحاجي - أثاث فاخر عالي الجودة' 
+        : 'Alhaji Furniture - Premium Quality Furniture';
 }
 
 // Get translation by key

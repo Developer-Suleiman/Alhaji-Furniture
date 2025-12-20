@@ -72,6 +72,17 @@ body {
     box-shadow: 0 12px 40px rgba(201, 166, 107, 0.5);
 }
 
+.login-header .brand-text-login {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.login-header .brand-text-login .highlight {
+    color: var(--primary-color);
+}
+
 .login-header .brand-icon {
     font-size: 3rem;
     display: block;
