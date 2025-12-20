@@ -141,7 +141,7 @@ const translations = {
         'product.details': 'Product Details',
         
         // Chatbot
-        'chatbot.name': 'Eid Assistant',
+        'chatbot.name': 'Alhaji Assistant',
         'chatbot.online': 'Online',
         'chatbot.products': 'Products',
         'chatbot.delivery': 'Delivery',
