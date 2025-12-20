@@ -403,7 +403,7 @@ function addReviewStyles() {
 function initNavbar() {
     const navbar = document.querySelector('.navbar');
     
-    // Scroll effect
+    // Scroll effect - CSS handles the text color change
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');

@@ -1,0 +1,18 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#1a1a2e"/>
+  
+  <!-- Chair Icon -->
+  <g transform="translate(6, 5)">
+    <!-- Chair back -->
+    <rect x="1" y="0" width="3" height="14" rx="1.5" fill="#C9A66B"/>
+    <rect x="16" y="0" width="3" height="14" rx="1.5" fill="#C9A66B"/>
+    <!-- Chair back rest -->
+    <rect x="0" y="0" width="20" height="4" rx="2" fill="#C9A66B"/>
+    <!-- Seat cushion -->
+    <rect x="0" y="13" width="20" height="5" rx="2.5" fill="#C9A66B"/>
+    <!-- Chair legs -->
+    <rect x="2" y="18" width="2" height="4" rx="1" fill="#C9A66B"/>
+    <rect x="16" y="18" width="2" height="4" rx="1" fill="#C9A66B"/>
+  </g>
+</svg>

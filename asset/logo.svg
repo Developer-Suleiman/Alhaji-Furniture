@@ -1,37 +1,21 @@
 <svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <!-- Gold gradient -->
-    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#D4AF37"/>
-      <stop offset="50%" style="stop-color:#C9A66B"/>
-      <stop offset="100%" style="stop-color:#B8860B"/>
-    </linearGradient>
-    <!-- Dark gradient -->
-    <linearGradient id="darkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2A2A2A"/>
-      <stop offset="100%" style="stop-color:#1a1a1a"/>
-    </linearGradient>
-  </defs>
-  
   <!-- Modern Chair Icon -->
   <g transform="translate(5, 8)">
     <!-- Chair back -->
-    <rect x="2" y="0" width="4" height="22" rx="2" fill="url(#goldGradient)"/>
-    <rect x="24" y="0" width="4" height="22" rx="2" fill="url(#goldGradient)"/>
+    <rect x="2" y="0" width="4" height="22" rx="2" fill="#C9A66B"/>
+    <rect x="24" y="0" width="4" height="22" rx="2" fill="#C9A66B"/>
     <!-- Chair back rest -->
-    <rect x="0" y="0" width="30" height="6" rx="3" fill="url(#goldGradient)"/>
+    <rect x="0" y="0" width="30" height="6" rx="3" fill="#C9A66B"/>
     <!-- Seat cushion -->
-    <rect x="0" y="20" width="30" height="8" rx="4" fill="url(#darkGradient)"/>
+    <rect x="0" y="20" width="30" height="8" rx="4" fill="#C9A66B"/>
     <!-- Chair legs -->
-    <rect x="3" y="28" width="3" height="6" rx="1" fill="url(#goldGradient)"/>
-    <rect x="24" y="28" width="3" height="6" rx="1" fill="url(#goldGradient)"/>
+    <rect x="3" y="28" width="3" height="6" rx="1" fill="#C9A66B"/>
+    <rect x="24" y="28" width="3" height="6" rx="1" fill="#C9A66B"/>
   </g>
   
-  <!-- Brand Name -->
-  <text x="45" y="28" font-family="'Playfair Display', Georgia, serif" 
-        font-size="26" font-weight="700" fill="url(#darkGradient)" letter-spacing="1">Alhaji</text>
+  <!-- Brand Name - Using rectangle as text background trick -->
+  <text x="45" y="30" style="font-family: Arial, sans-serif; font-size: 26px; font-weight: 800; fill: #000000;">Alhaji</text>
   
   <!-- Tagline -->
-  <text x="45" y="42" font-family="'Montserrat', Arial, sans-serif" 
-        font-size="11" font-weight="300" fill="url(#goldGradient)" letter-spacing="3" text-transform="uppercase">FURNITURE</text>
+  <text x="46" y="44" style="font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; fill: #C9A66B; letter-spacing: 3px;">FURNITURE</text>
 </svg>

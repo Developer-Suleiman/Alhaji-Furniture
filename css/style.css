@@ -402,41 +402,45 @@ body.rtl .footer-contact i {
 .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--secondary-color) !important;
     text-decoration: none;
 }
 
-.navbar-brand .brand-logo {
-    height: 45px;
-    width: auto;
-    transition: all 0.3s ease;
-}
-
-.navbar-brand:hover .brand-logo {
-    transform: scale(1.05);
-}
-
-.navbar.scrolled .brand-logo {
+.navbar-brand .brand-icon {
     height: 40px;
-}
-
-/* Modern Logo Image Styling */
-.brand-logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
-    object-fit: cover;
-    box-shadow: 0 4px 15px rgba(201, 166, 107, 0.3);
+    width: 40px;
     transition: all 0.3s ease;
-    border: 2px solid var(--primary-color);
 }
 
-.navbar-brand:hover .brand-logo {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(201, 166, 107, 0.4);
+.navbar-brand .brand-text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #3d5a80;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand .brand-text .highlight {
+    color: var(--primary-color);
+}
+
+.navbar-brand:hover .brand-icon {
+    transform: scale(1.1);
+}
+
+/* When navbar is scrolled (same styling for consistency) */
+.navbar.scrolled .brand-text {
+    color: #3d5a80;
+}
+
+.navbar.scrolled .brand-text .highlight {
+    color: var(--primary-color);
+}
+
+.navbar.scrolled .brand-icon {
+    height: 35px;
+    width: 35px;
 }
 
 .navbar.scrolled .brand-logo {
@@ -1570,14 +1574,24 @@ body.rtl .footer-contact i {
     margin-bottom: 20px;
 }
 
-.footer-brand .brand-logo {
-    height: 50px;
-    width: auto;
+.footer-brand .brand-icon {
+    height: 45px;
+    width: 45px;
     transition: all 0.3s ease;
 }
 
-.footer-brand:hover .brand-logo {
-    transform: scale(1.05);
+.footer-brand .brand-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.footer-brand .brand-text .highlight {
+    color: var(--primary-color);
+}
+
+.footer-brand:hover .brand-icon {
+    transform: scale(1.1);
 }
 
 .footer p {

@@ -56,25 +56,26 @@ body {
     margin-bottom: 30px;
 }
 
-.login-header .login-logo {
+.login-header .login-icon {
     height: 60px;
-    width: auto;
-    margin-bottom: 20px;
+    width: 60px;
+    margin-bottom: 15px;
     transition: all 0.3s ease;
 }
 
-.login-header .login-logo:hover {
-    transform: scale(1.05);
+.login-header .login-icon:hover {
+    transform: scale(1.1);
 }
 
-.login-header .brand-text-login {
-    font-size: 2rem;
+.login-header .brand-text {
+    font-size: 1.8rem;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    display: block;
 }
 
-.login-header .brand-text-login .highlight {
+.login-header .brand-text .highlight {
     color: var(--primary-color);
 }
 
@@ -208,14 +209,24 @@ body {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.sidebar-header .sidebar-logo {
-    height: 40px;
-    width: auto;
+.sidebar-header .sidebar-icon {
+    height: 35px;
+    width: 35px;
     transition: all 0.3s ease;
 }
 
-.sidebar-header .sidebar-logo:hover {
-    transform: scale(1.05);
+.sidebar-header .sidebar-icon:hover {
+    transform: scale(1.1);
+}
+
+.sidebar-header .brand-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sidebar-header .brand-text .highlight {
+    color: var(--primary-color);
 }
 
 .brand-icon {
