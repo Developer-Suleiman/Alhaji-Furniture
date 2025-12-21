@@ -1,3 +1,17 @@
+// Guarantee Save Product button event listener is attached after DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    const saveBtn = document.getElementById('saveProduct');
+    if (saveBtn) {
+        saveBtn.addEventListener('click', async () => {
+            try {
+                await saveProduct();
+            } catch (err) {
+                showAdminToast('Error saving product: ' + (err.message || err), 'error');
+                console.error('Error in saveProduct:', err);
+            }
+        });
+    }
+});
 // Admin Panel JavaScript
 
 // ============ FIREBASE REAL-TIME SYNC ============
@@ -360,10 +374,41 @@ function initializeAdminPanel() {
     loadMessages();
     initCharts();
     initMessageRefresh();
-    
+
+
+    // Disable Save Product button until Firebase is ready and attach event listener after
+    const saveBtn = document.getElementById('saveProduct');
+    if (saveBtn) {
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'Connecting...';
+    }
+
     // Initialize Firebase real-time sync
-    initFirebaseRealTimeSync();
-    
+    initFirebaseRealTimeSync().then(() => {
+        if (saveBtn) {
+            saveBtn.disabled = false;
+            saveBtn.textContent = 'Save Product';
+            // Remove any previous listeners to avoid duplicates
+            saveBtn.replaceWith(saveBtn.cloneNode(true));
+            const newSaveBtn = document.getElementById('saveProduct');
+            newSaveBtn.addEventListener('click', async () => {
+                try {
+                    await saveProduct();
+                } catch (err) {
+                    showAdminToast('Error saving product: ' + (err.message || err), 'error');
+                    console.error('Error in saveProduct:', err);
+                }
+            });
+        }
+    }).catch((err) => {
+        if (saveBtn) {
+            saveBtn.disabled = true;
+            saveBtn.textContent = 'Sync Failed';
+        }
+        showAdminToast('Firebase sync failed: ' + (err.message || err), 'error');
+        console.error('Firebase sync failed:', err);
+    });
+
     // Setup admin logout button
     const logoutBtn = document.getElementById('adminLogoutBtn');
     if (logoutBtn) {
@@ -1273,6 +1318,7 @@ function filterProducts(searchTerm) {
 
 // Save Product (Add or Update) - with Firebase sync
 async function saveProduct() {
+        console.log('saveProduct called');
     console.log('🔵 saveProduct() called!');
     
     const form = document.getElementById('productForm');
@@ -1309,6 +1355,10 @@ async function saveProduct() {
             if (!firstInvalid) firstInvalid = el;
         }
     });
+    if (missing.length > 0) {
+        showAdminToast('Validation failed: ' + missing.join(', '), 'error');
+        console.error('Validation failed: missing fields:', missing);
+    }
     // Add optional fields
     formData.originalprice = parseFloat(document.getElementById('productOriginalPrice').value) || null;
     formData.badge = document.getElementById('productBadge').value.trim();
