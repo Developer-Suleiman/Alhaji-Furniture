@@ -737,13 +737,14 @@
     <!-- Admin Panel JS -->
     <script src="js/admin.js?v=3.0"></script>
     <script>
-        // Force load products on page load - ensures consistency
-        window.addEventListener('load', function() {
-            // Check if already authenticated
-            const isAuth = sessionStorage.getItem('eidFurnitureAdminAuth') || localStorage.getItem('eidFurnitureAdminAuth');
-            if (isAuth && typeof loadProducts === 'function') {
-                console.log('Force loading products...');
-                setTimeout(loadProducts, 100);
+        // Initialize Firebase product sync after page load (admin panel)
+        window.addEventListener('DOMContentLoaded', async () => {
+            if (typeof initProductsFirebaseSync === 'function') {
+                await initProductsFirebaseSync();
+                // Refresh product display after sync
+                if (typeof loadProducts === 'function') {
+                    loadProducts();
+                }
             }
         });
     </script>

@@ -1,6 +1,8 @@
 // Firebase Configuration for Alhaji Furniture
 // Real-time database for syncing products, orders, and data across all devices
 
+
+
 // ============ FIREBASE SETUP INSTRUCTIONS ============
 // 1. Go to https://console.firebase.google.com/
 // 2. Create a new project (or use existing)
@@ -12,14 +14,17 @@
 
 // Replace these values with your Firebase project config
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDyugsXS2er0XO8RPM-ovwhHT7dKm-noZQ",
+  authDomain: "alhaji-furniture.firebaseapp.com",
+  projectId: "alhaji-furniture",
+  storageBucket: "alhaji-furniture.firebasestorage.app",
+  messagingSenderId: "182252082930",
+  appId: "1:182252082930:web:93e3b39ac44265177ba26b",
+  measurementId: "G-PFFSKDRNF3"
 };
+
+
+
 
 // Check if Firebase config is set up
 const isFirebaseConfigured = firebaseConfig.apiKey !== "YOUR_API_KEY";
