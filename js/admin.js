@@ -378,7 +378,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check admin authentication
     checkAdminAuth();
     
-    // Only initialize if already authenticated
+    // Always initialize sidebar for mobile reliability
+    initSidebar();
+    // Only initialize full admin panel if authenticated
     const isAuthenticated = sessionStorage.getItem(ADMIN_AUTH_KEY) || localStorage.getItem(ADMIN_AUTH_KEY);
     if (isAuthenticated) {
         initializeAdminPanel();
