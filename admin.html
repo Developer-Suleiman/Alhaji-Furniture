@@ -737,14 +737,10 @@
     <!-- Admin Panel JS -->
     <script src="js/admin.js?v=3.0"></script>
     <script>
-        // Initialize Firebase product sync after page load (admin panel)
-        window.addEventListener('DOMContentLoaded', async () => {
-            if (typeof initProductsFirebaseSync === 'function') {
-                await initProductsFirebaseSync();
-                // Refresh product display after sync
-                if (typeof loadProducts === 'function') {
-                    loadProducts();
-                }
+        // Initialize admin panel (includes Firebase sync and CRUD setup)
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof initializeAdminPanel === 'function') {
+                initializeAdminPanel();
             }
         });
     </script>
