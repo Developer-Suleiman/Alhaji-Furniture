@@ -18,6 +18,12 @@ const PRODUCTS_STORAGE_KEY = 'eidFurnitureProducts';
 // Firebase real-time sync flag
 let useFirebaseProducts = false;
 
+// Track if user has interacted (for AudioContext policy)
+let userHasInteracted = false;
+window.addEventListener('click', () => {
+    userHasInteracted = true;
+});
+
 // Check if this is a fresh install (no products ever saved)
 function isFreshInstall() {
     return localStorage.getItem(PRODUCTS_STORAGE_KEY) === null;
@@ -327,6 +333,7 @@ function scrollToProduct(productId) {
 
 // Play notification sound
 function playNotificationSound() {
+    if (!userHasInteracted) return; // Only play if user has interacted
     try {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
