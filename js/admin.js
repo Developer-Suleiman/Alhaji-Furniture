@@ -1098,7 +1098,8 @@ function loadDashboard() {
     adminProducts = getProducts();
     const realOrders = getOrders();
     const realCustomers = getCustomers();
-    const realStats = calculateRealStats();
+    // const realStats = calculateRealStats(); // Disabled: function not defined
+    const realStats = { totalRevenue: 0, totalOrders: 0, totalCustomers: 0, totalProducts: 0 };
     
     // Update stat cards with real data
     const totalRevenueEl = document.getElementById('totalRevenue');
