@@ -26,7 +26,6 @@ const firebaseConfig = {
 
 
 
-
 // Check if Firebase config is set up
 const isFirebaseConfigured = firebaseConfig.apiKey !== "YOUR_API_KEY";
 
@@ -468,8 +467,8 @@ async function initFirebaseSync() {
         return false;
     }
     
-    createSyncIndicator();
-    updateSyncStatus('syncing', 'Connecting...');
+    // createSyncIndicator();
+    // updateSyncStatus('syncing', 'Connecting...');
     
     const success = initializeFirebase();
     
@@ -477,24 +476,15 @@ async function initFirebaseSync() {
         // Test connection
         try {
             await firebaseDB.ref('.info/connected').once('value');
-            updateSyncStatus('synced', 'Real-time sync active');
-            
-            // Monitor connection status
-            firebaseDB.ref('.info/connected').on('value', (snapshot) => {
-                if (snapshot.val() === true) {
-                    updateSyncStatus('synced', 'Real-time sync active');
-                } else {
-                    updateSyncStatus('offline', 'Reconnecting...');
-                }
-            });
-            
+            // Sync indicator removed
+            // Monitor connection status removed
             return true;
         } catch (error) {
-            updateSyncStatus('offline', 'Connection failed');
+            // Sync indicator removed
             return false;
         }
     } else {
-        updateSyncStatus('offline', 'Firebase error');
+        // Sync indicator removed
         return false;
     }
 }
