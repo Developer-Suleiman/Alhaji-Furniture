@@ -1,3 +1,28 @@
+// Robust event listener for Save Product button (guaranteed for deployment)
+document.addEventListener('DOMContentLoaded', function() {
+    function attachSaveProductListener() {
+        const saveBtn = document.getElementById('saveProduct');
+        if (saveBtn) {
+            saveBtn.onclick = async function() {
+                try {
+                    if (typeof firebase === 'undefined' || !window.firebaseInitialized || !window.firebaseInitialized()) {
+                        showAdminToast('Firebase is not connected. Please check your internet or Firebase config.', 'error');
+                        console.error('Firebase not initialized or unavailable.');
+                        return;
+                    }
+                    await saveProduct();
+                } catch (err) {
+                    showAdminToast('Error saving product: ' + (err.message || err), 'error');
+                    console.error('Error in saveProduct:', err);
+                }
+            };
+        } else {
+            // Try again in 500ms if not found (handles dynamic modals)
+            setTimeout(attachSaveProductListener, 500);
+        }
+    }
+    attachSaveProductListener();
+});
 // Guarantee Save Product button event listener is attached after DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
     const saveBtn = document.getElementById('saveProduct');
