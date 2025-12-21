@@ -1,3 +1,35 @@
+.store-name {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        letter-spacing: 2px;
+        margin: 0 24px;
+        text-align: center;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(90deg, #ffe6b3 0%, #fffbe6 100%);
+        padding: 8px 32px;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(201, 166, 107, 0.10);
+        border: 1.5px solid var(--primary-color);
+        transition: box-shadow 0.3s;
+}
+.store-name .highlight {
+        color: var(--primary-color);
+}
+.store-name:hover {
+        box-shadow: 0 4px 24px rgba(201, 166, 107, 0.18);
+}
+@media (max-width: 767.98px) {
+    .store-name {
+        font-size: 1.2rem;
+        margin: 0 8px;
+        padding: 6px 10px;
+    }
+}
 /* ===== CSS Variables ===== */
 :root {
     --primary-color: #c9a66b;
@@ -415,6 +447,31 @@ body.rtl .footer-contact i {
 
 .navbar-brand:hover .brand-logo {
     transform: scale(1.05);
+}
+
+/* Store Name Styling */
+.store-name {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        letter-spacing: 2px;
+        margin: 0 24px;
+        text-align: center;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.store-name .highlight {
+        color: var(--primary-color);
+}
+
+@media (max-width: 767.98px) {
+    .store-name {
+        font-size: 1.2rem;
+        margin: 0 8px;
+    }
 }
 
 /* When navbar is scrolled */
