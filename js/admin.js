@@ -1282,7 +1282,46 @@ async function saveProduct() {
     const isEditing = !!editingId; // Store before we delete it
     console.log('Is Editing:', isEditing, 'Editing ID:', editingId);
     
-    const formData = {
+
+    // Gather fields and values
+    const fields = [
+        { id: 'productName', label: 'Name', required: true },
+        { id: 'productCategory', label: 'Category', required: true },
+        { id: 'productPrice', label: 'Price', required: true },
+        { id: 'productImage', label: 'Image', required: true },
+        { id: 'productDescription', label: 'Description', required: true },
+        { id: 'productStock', label: 'Stock', required: true },
+    ];
+    let firstInvalid = null;
+    let missing = [];
+    let formData = {};
+    fields.forEach(f => {
+        const el = document.getElementById(f.id);
+        let value = el.value.trim();
+        if (f.id === 'productPrice') value = parseFloat(value);
+        if (f.id === 'productStock') value = parseInt(value);
+        formData[f.id.replace('product', '').toLowerCase()] = value;
+        // Remove previous highlight
+        el.classList.remove('is-invalid');
+        if (f.required && (!value || (f.id === 'productPrice' && isNaN(value)) || (f.id === 'productStock' && isNaN(value)))) {
+            missing.push(f.label);
+            el.classList.add('is-invalid');
+            if (!firstInvalid) firstInvalid = el;
+        }
+    });
+    // Add optional fields
+    formData.originalprice = parseFloat(document.getElementById('productOriginalPrice').value) || null;
+    formData.badge = document.getElementById('productBadge').value.trim();
+
+    // If missing, show detailed error
+    if (missing.length > 0) {
+        showAdminToast('Please fill in: ' + missing.join(', '), 'error');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+    }
+
+    // Rename keys to match original structure
+    formData = {
         name: document.getElementById('productName').value.trim(),
         category: document.getElementById('productCategory').value,
         price: parseFloat(document.getElementById('productPrice').value),
@@ -1292,15 +1331,6 @@ async function saveProduct() {
         image: document.getElementById('productImage').value.trim(),
         badge: document.getElementById('productBadge').value.trim(),
     };
-    
-    console.log('📦 Form Data:', formData);
-    
-    // Validate
-    if (!formData.name || !formData.category || !formData.price || !formData.image) {
-        console.log('❌ Validation failed:', { name: formData.name, category: formData.category, price: formData.price, image: formData.image });
-        showAdminToast('Please fill in all required fields (Name, Category, Price, Image)', 'error');
-        return;
-    }
     
     console.log('✅ Validation passed!');
     
