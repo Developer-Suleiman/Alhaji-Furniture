@@ -14,13 +14,14 @@
 
 // Replace these values with your Firebase project config
 const firebaseConfig = {
-  apiKey: "AIzaSyDyugsXS2er0XO8RPM-ovwhHT7dKm-noZQ",
-  authDomain: "alhaji-furniture.firebaseapp.com",
-  projectId: "alhaji-furniture",
-  storageBucket: "alhaji-furniture.firebasestorage.app",
-  messagingSenderId: "182252082930",
-  appId: "1:182252082930:web:93e3b39ac44265177ba26b",
-  measurementId: "G-PFFSKDRNF3"
+    apiKey: "AIzaSyDyugsXS2er0XO8RPM-ovwhHT7dKm-noZQ",
+    authDomain: "alhaji-furniture.firebaseapp.com",
+    databaseURL: "https://alhaji-furniture-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "alhaji-furniture",
+    storageBucket: "alhaji-furniture.firebasestorage.app",
+    messagingSenderId: "182252082930",
+    appId: "1:182252082930:web:93e3b39ac44265177ba26b",
+    measurementId: "G-PFFSKDRNF3"
 };
 
 
