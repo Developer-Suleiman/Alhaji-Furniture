@@ -1,21 +1,70 @@
+/* Flex spacer for perfect navbar centering */
+.navbar-flex-balance {
+    gap: 0;
+}
+.navbar-logo-spacer {
+    width: 56px;
+    min-width: 32px;
+    height: 1px;
+    display: block;
+    visibility: hidden;
+}
+@media (max-width: 991.98px) {
+    .navbar-logo-spacer {
+        width: 38px;
+        min-width: 24px;
+    }
+}
+/* Responsive store name centering */
+/* Modern, beautiful, responsive store name */
+/* Improved, balanced, responsive store name */
+    font-size: clamp(0.92rem, 2vw, 1.05rem);
+    font-weight: 700;
+    color: #34495e;
+    letter-spacing: 0.04em;
+    text-align: center;
+    font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(90deg, #f7e9c2 0%, #f2d184 100%);
+    padding: 1px 8px;
+    border-radius: 6px;
+    box-shadow: none;
+    border: 1px solid #f2d184;
+    transition: box-shadow 0.3s, background 0.3s, font-size 0.3s, padding 0.3s;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    position: absolute;
+    z-index: 1;
+    white-space: nowrap;
+    max-width: 40vw;
+    min-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: none;
 .store-name {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--secondary-color);
-        letter-spacing: 2px;
-        margin: 0 24px;
-        text-align: center;
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(90deg, #ffe6b3 0%, #fffbe6 100%);
-        padding: 8px 32px;
-        border-radius: 16px;
-        box-shadow: 0 2px 12px rgba(201, 166, 107, 0.10);
-        border: 1.5px solid var(--primary-color);
-        transition: box-shadow 0.3s;
+    font-size: clamp(0.7rem, 1.2vw, 0.92rem);
+    font-weight: 700;
+    color: #34495e;
+    letter-spacing: 0.04em;
+    text-align: center;
+    font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(90deg, #f7e9c2 0%, #f2d184 100%);
+    padding: 1px 8px;
+    border-radius: 6px;
+    box-shadow: none;
+    border: 1px solid #f2d184;
+    transition: box-shadow 0.3s, background 0.3s, font-size 0.3s, padding 0.3s;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    position: absolute;
+    z-index: 1;
+    white-space: nowrap !important;
+    max-width: 300px;
+    min-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: none;
 }
 .store-name .highlight {
         color: var(--primary-color);
@@ -23,11 +72,23 @@
 .store-name:hover {
         box-shadow: 0 4px 24px rgba(201, 166, 107, 0.18);
 }
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
     .store-name {
-        font-size: 1.2rem;
-        margin: 0 8px;
-        padding: 6px 10px;
+        font-size: clamp(0.65rem, 2vw, 0.8rem);
+        padding: 1px 4px;
+        border-radius: 4px;
+        max-width: 70vw;
+        min-width: 40px;
+        white-space: nowrap !important;
+    }
+    .navbar .d-flex.align-items-center {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .navbar-brand img.brand-logo {
+        max-width: 32px;
+        height: auto;
     }
 }
 /* ===== CSS Variables ===== */
