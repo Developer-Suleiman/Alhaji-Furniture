@@ -1,8 +1,8 @@
 // Authentication System for Alhaji Furniture
 
 // Storage Keys
-const AUTH_STORAGE_KEY = 'alhajiFurnitureAuth';
-const USERS_STORAGE_KEY = 'alhajiFurnitureUsers';
+const AUTH_STORAGE_KEY = 'eidFurnitureAuth';
+const USERS_STORAGE_KEY = 'eidFurnitureUsers';
 
 // Current User State
 let currentUser = null;
@@ -172,7 +172,7 @@ function handleLogin(e) {
     const rememberMe = document.getElementById('rememberMe').checked;
 
     // Check if admin credentials
-    if (email === 'admin@eidfurniture.com' && password === 'admin123') {
+    if (email === 'admin@hajifurniture.com' && password === 'admin123') {
         // Admin login - redirect to admin panel
         if (rememberMe) {
             localStorage.setItem('eidFurnitureAdminAuth', 'true');
@@ -604,7 +604,7 @@ function getUsers() {
         id: 1,
         firstName: 'Demo',
         lastName: 'User',
-        email: 'demo@eidfurniture.com',
+        email: 'demo@hajifurniture.com',
         phone: '+20 10 1234 5678',
         password: hashPassword('demo1234'),
         avatar: null,

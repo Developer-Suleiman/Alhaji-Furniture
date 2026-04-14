@@ -64,7 +64,7 @@ const ADMIN_AUTH_KEY = STORAGE_KEYS.adminAuth;
 
 // ============ ADMIN AUTHENTICATION ============
 const DEFAULT_ADMIN_CREDENTIALS = {
-    email: 'admin@eidfurniture.com',
+    email: 'admin@hajifurniture.com',
     password: 'admin123'
 };
 

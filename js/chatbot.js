@@ -73,7 +73,7 @@ const knowledgeBase = {
     contact: {
         patterns: ['contact', 'phone', 'email', 'support', 'customer service', 'help', 'talk to human', 'speak to someone'],
         responses: [
-            "📞 **Contact Us**:\n\n• **Phone**: +20 2 2275 1234\n• **Email**: info@eidfurniture.com\n• **Hours**: Sat-Thu 10AM-10PM, Fri 2PM-10PM\n• **Address**: Abbas Al-Akkad St., Nasr City, Cairo\n\nOr fill out our contact form on the website!"
+            "📞 **Contact Us**:\n\n• **Phone**: +20 2 2275 1234\n• **Email**: info@hajifurniture.com\n• **Hours**: Sat-Thu 10AM-10PM, Fri 2PM-10PM\n• **Address**: Abbas Al-Akkad St., Nasr City, Cairo\n\nOr fill out our contact form on the website!"
         ]
     },
     location: {
@@ -85,7 +85,7 @@ const knowledgeBase = {
     custom: {
         patterns: ['custom', 'customize', 'special order', 'made to order', 'bespoke'],
         responses: [
-            "✨ **Custom Orders**:\n\nYes! We offer custom furniture:\n• Choose your dimensions\n• Select fabrics and colors\n• Custom finishes available\n• Delivery in 4-6 weeks\n\nContact us at custom@eidfurniture.com to discuss your vision!"
+            "✨ **Custom Orders**:\n\nYes! We offer custom furniture:\n• Choose your dimensions\n• Select fabrics and colors\n• Custom finishes available\n• Delivery in 4-6 weeks\n\nContact us at custom@hajifurniture.com to discuss your vision!"
         ]
     },
     discount: {
@@ -134,11 +134,11 @@ const knowledgeBase = {
 const defaultResponses = [
     "I'm not sure I understand. Could you rephrase that? Or ask about our products, delivery, returns, or contact information! 🤔",
     "Hmm, I didn't quite catch that. Try asking about:\n• Our furniture collection\n• Delivery options\n• Return policy\n• Contact support",
-    "I'm still learning! For complex questions, please contact our support team at +20 2 2275 1234 or info@eidfurniture.com 📞"
+    "I'm still learning! For complex questions, please contact our support team at +20 2 2275 1234 or info@hajifurniture.com 📞"
 ];
 
 // Chatbot Class
-class EidChatbot {
+class HajiChatbot {
     constructor() {
         this.container = document.getElementById('chatbot');
         this.toggle = document.getElementById('chatbotToggle');
@@ -234,7 +234,7 @@ class EidChatbot {
         messageEl.className = 'message bot-message';
         messageEl.innerHTML = `
             <div class="message-avatar">
-                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=eid" alt="Bot">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=haji" alt="Bot">
             </div>
             <div class="message-content">
                 <p>${this.formatMessage(message)}</p>
@@ -253,7 +253,7 @@ class EidChatbot {
         typingEl.id = 'typingIndicator';
         typingEl.innerHTML = `
             <div class="message-avatar">
-                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=eid" alt="Bot">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=haji" alt="Bot">
             </div>
             <div class="message-content">
                 <div class="typing-dots">
@@ -332,5 +332,5 @@ class EidChatbot {
 
 // Initialize chatbot when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    window.eidChatbot = new EidChatbot();
+    window.hajiChatbot = new HajiChatbot();
 });

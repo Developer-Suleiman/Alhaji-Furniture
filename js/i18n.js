@@ -1,7 +1,7 @@
 // Internationalization (i18n) Module for Alhaji Furniture
 // Supports English and Arabic with RTL support
 
-const LANG_STORAGE_KEY = 'alhajiFurnitureLang';
+const LANG_STORAGE_KEY = 'eidFurnitureLang';
 
 // Translations
 const translations = {

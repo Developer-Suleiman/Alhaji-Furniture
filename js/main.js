@@ -1,8 +1,8 @@
 // Main JavaScript file for Alhaji Furniture
 
 // Storage keys
-const REVIEWS_STORAGE_KEY = 'alhajiFurnitureReviews';
-const ORDERS_STORAGE_KEY = 'alhajiFurnitureOrders';
+const REVIEWS_STORAGE_KEY = 'eidFurnitureReviews';
+const ORDERS_STORAGE_KEY = 'eidFurnitureOrders';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Hide preloader
