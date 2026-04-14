@@ -63,10 +63,26 @@ const REVIEWS_STORAGE_KEY = STORAGE_KEYS.reviews;
 const ADMIN_AUTH_KEY = STORAGE_KEYS.adminAuth;
 
 // ============ ADMIN AUTHENTICATION ============
-const ADMIN_CREDENTIALS = {
+const DEFAULT_ADMIN_CREDENTIALS = {
     email: 'admin@eidfurniture.com',
     password: 'admin123'
 };
+
+// Load saved credentials from localStorage, fallback to defaults
+function getAdminCredentials() {
+    const saved = localStorage.getItem('eidFurnitureAdminCredentials');
+    if (saved) {
+        try { return JSON.parse(saved); } catch(e) {}
+    }
+    return { ...DEFAULT_ADMIN_CREDENTIALS };
+}
+
+function saveAdminCredentials(creds) {
+    localStorage.setItem('eidFurnitureAdminCredentials', JSON.stringify(creds));
+}
+
+// Mutable credentials object
+let ADMIN_CREDENTIALS = getAdminCredentials();
 
 // Check admin authentication
 function checkAdminAuth() {
@@ -163,9 +179,16 @@ function initProfileHandlers() {
             e.preventDefault();
             const name = document.getElementById('adminFullName').value.trim();
             const phone = document.getElementById('adminPhone').value.trim();
+            const email = document.getElementById('adminProfileEmail').value.trim();
             
-            // Save to localStorage
+            // Save profile to localStorage
             localStorage.setItem('eidFurnitureAdminProfile', JSON.stringify({ name, phone }));
+            
+            // Save email to credentials
+            if (email && email !== ADMIN_CREDENTIALS.email) {
+                ADMIN_CREDENTIALS.email = email;
+                saveAdminCredentials(ADMIN_CREDENTIALS);
+            }
             
             // Update header
             const nameEl = document.querySelector('.admin-profile .name');
@@ -197,8 +220,10 @@ function initProfileHandlers() {
                 return;
             }
             
-            // In a real app, you'd save to database. For demo, show success
-            showAdminToast('Password updated successfully! (Demo mode - password not actually changed)', 'success');
+            // Save new password
+            ADMIN_CREDENTIALS.password = newPass;
+            saveAdminCredentials(ADMIN_CREDENTIALS);
+            showAdminToast('Password updated successfully!', 'success');
             passwordForm.reset();
         });
     }
@@ -216,6 +241,9 @@ function initProfileHandlers() {
         const phoneInput = document.getElementById('adminPhone');
         if (phoneInput) phoneInput.value = savedProfile.phone;
     }
+    // Load saved email from credentials
+    const profileEmailInput = document.getElementById('adminProfileEmail');
+    if (profileEmailInput) profileEmailInput.value = ADMIN_CREDENTIALS.email;
 }
 
 // ============ PRODUCTS MANAGEMENT ============
@@ -1208,6 +1236,25 @@ function loadProducts() {
         searchInput.addEventListener('input', handleProductSearch);
     }
     
+    // Image file input handler
+    const imageFileInput = document.getElementById('productImageFile');
+    if (imageFileInput) {
+        imageFileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('productImage').value = e.target.result;
+                    const preview = document.getElementById('imagePreview');
+                    const previewImg = document.getElementById('imagePreviewImg');
+                    previewImg.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
     // Save product handler - CRITICAL: must always be attached
     const saveBtn = document.getElementById('saveProduct');
     if (saveBtn) {
@@ -1278,6 +1325,14 @@ function editProduct(id) {
     document.getElementById('productDescription').value = product.description || '';
     document.getElementById('productImage').value = product.image;
     document.getElementById('productBadge').value = product.badge || '';
+    
+    // Show image preview when editing
+    if (product.image) {
+        const preview = document.getElementById('imagePreview');
+        const previewImg = document.getElementById('imagePreviewImg');
+        previewImg.src = product.image;
+        preview.style.display = 'block';
+    }
     
     // Store editing ID
     document.getElementById('productForm').dataset.editingId = id;
@@ -1362,7 +1417,7 @@ async function saveProduct() {
         { id: 'productName', label: 'Name', required: true },
         { id: 'productCategory', label: 'Category', required: true },
         { id: 'productPrice', label: 'Price', required: true },
-        { id: 'productImage', label: 'Image', required: true },
+        { id: 'productImage', label: 'Image', required: !document.getElementById('productForm').dataset.editingId },
         { id: 'productDescription', label: 'Description', required: true },
         { id: 'productStock', label: 'Stock', required: true },
     ];
@@ -1406,7 +1461,7 @@ async function saveProduct() {
         originalPrice: parseFloat(document.getElementById('productOriginalPrice').value) || null,
         stock: parseInt(document.getElementById('productStock').value) || 0,
         description: document.getElementById('productDescription').value.trim(),
-        image: document.getElementById('productImage').value.trim(),
+        image: document.getElementById('productImage').value.trim() || undefined,
         badge: document.getElementById('productBadge').value.trim(),
     };
     
@@ -1462,6 +1517,11 @@ async function saveProduct() {
     const modal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
     if (modal) modal.hide();
     form.reset();
+    // Reset image preview and file input
+    const preview = document.getElementById('imagePreview');
+    if (preview) preview.style.display = 'none';
+    const fileInput = document.getElementById('productImageFile');
+    if (fileInput) fileInput.value = '';
     
     // Show success notification with product details
     console.log('🎉 Showing notification and reloading...');
