@@ -706,11 +706,19 @@
                             <textarea class="form-control" id="productDescription" rows="3" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Product Image</label>
-                            <input type="file" class="form-control" id="productImageFile" accept="image/*">
-                            <input type="hidden" id="productImage">
-                            <div id="imagePreview" class="mt-2" style="display:none;">
-                                <img id="imagePreviewImg" src="" alt="Preview" style="max-width:200px;max-height:200px;border-radius:8px;border:1px solid #ccc;">
+                            <label class="form-label">Product Images</label>
+                            <div class="multi-image-upload-area" id="multiImageUploadArea">
+                                <input type="file" class="form-control d-none" id="productImageFile" accept="image/*" multiple>
+                                <input type="hidden" id="productImage">
+                                <div class="upload-placeholder" id="uploadPlaceholder" onclick="document.getElementById('productImageFile').click()">
+                                    <i class="fas fa-cloud-upload-alt fa-2x mb-2"></i>
+                                    <p class="mb-1">Click or drag images here</p>
+                                    <small class="text-muted">Upload multiple images (auto-compressed, first = main)</small>
+                                </div>
+                                <div class="image-previews-grid" id="imagePreviews"></div>
+                                <button type="button" class="btn btn-outline-secondary btn-sm mt-2" id="addMoreImages" style="display:none;" onclick="document.getElementById('productImageFile').click()">
+                                    <i class="fas fa-plus"></i> Add More Images
+                                </button>
                             </div>
                         </div>
                         <div class="mb-3">

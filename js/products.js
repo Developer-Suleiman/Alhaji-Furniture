@@ -411,6 +411,29 @@ function refreshProducts() {
     products = initializeProducts();
 }
 
+// ============ PRODUCT IMAGE SLIDER HELPERS ============
+function slideProductImage(productId, direction) {
+    const slider = document.querySelector(`.product-image-slider[data-product-id="${productId}"]`);
+    if (!slider) return;
+    const imgs = slider.querySelectorAll('.product-slider-img');
+    const dots = slider.querySelectorAll('.slider-dot');
+    let current = Array.from(imgs).findIndex(img => img.classList.contains('active'));
+    imgs[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (current + direction + imgs.length) % imgs.length;
+    imgs[current].classList.add('active');
+    dots[current].classList.add('active');
+}
+
+function goToProductImage(productId, index) {
+    const slider = document.querySelector(`.product-image-slider[data-product-id="${productId}"]`);
+    if (!slider) return;
+    const imgs = slider.querySelectorAll('.product-slider-img');
+    const dots = slider.querySelectorAll('.slider-dot');
+    imgs.forEach((img, i) => { img.classList.toggle('active', i === index); });
+    dots.forEach((dot, i) => { dot.classList.toggle('active', i === index); });
+}
+
 // Render products with pagination support
 function renderProducts(productsToRender, append = false) {
     const grid = document.getElementById('productsGrid');
@@ -454,9 +477,25 @@ function renderProducts(productsToRender, append = false) {
         card.setAttribute('data-category', product.category);
         card.setAttribute('data-product-id', product.id);
         
+        const hasMultipleImages = product.images && product.images.length > 1;
+        const mainImage = (product.images && product.images[0]) || product.image;
+        
         card.innerHTML = `
             <div class="product-image">
-                <img src="${product.image}" alt="${product.name}">
+                ${hasMultipleImages ? `
+                <div class="product-image-slider" data-product-id="${product.id}">
+                    ${product.images.map((img, imgIdx) => `
+                        <img src="${img}" alt="${product.name}" class="product-slider-img ${imgIdx === 0 ? 'active' : ''}" data-index="${imgIdx}">
+                    `).join('')}
+                    <button class="slider-arrow slider-prev" onclick="slideProductImage(${product.id}, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-arrow slider-next" onclick="slideProductImage(${product.id}, 1)"><i class="fas fa-chevron-right"></i></button>
+                    <div class="slider-dots">
+                        ${product.images.map((_, imgIdx) => `<span class="slider-dot ${imgIdx === 0 ? 'active' : ''}" onclick="goToProductImage(${product.id}, ${imgIdx})"></span>`).join('')}
+                    </div>
+                </div>
+                ` : `
+                <img src="${mainImage}" alt="${product.name}">
+                `}
                 ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
                 <div class="product-actions">
                     <button class="quick-view-btn" data-id="${product.id}" title="Quick View">
@@ -730,11 +769,31 @@ function showQuickView(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
     
+    const images = (product.images && product.images.length > 0) ? product.images : [product.image];
+    const hasMultiple = images.length > 1;
+    
     const content = document.getElementById('quickViewContent');
     content.innerHTML = `
         <div class="quick-view-content">
             <div class="quick-view-image">
-                <img src="${product.image}" alt="${product.name}">
+                <div class="qv-gallery">
+                    <div class="qv-main-image">
+                        <img src="${images[0]}" alt="${product.name}" id="qvMainImg">
+                        ${hasMultiple ? `
+                        <button class="qv-arrow qv-prev" id="qvPrev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="qv-arrow qv-next" id="qvNext"><i class="fas fa-chevron-right"></i></button>
+                        ` : ''}
+                    </div>
+                    ${hasMultiple ? `
+                    <div class="qv-thumbnails">
+                        ${images.map((img, i) => `
+                            <div class="qv-thumb ${i === 0 ? 'active' : ''}" data-index="${i}">
+                                <img src="${img}" alt="${product.name} ${i + 1}">
+                            </div>
+                        `).join('')}
+                    </div>
+                    ` : ''}
+                </div>
             </div>
             <div class="quick-view-info">
                 <span class="product-category">${product.category}</span>
@@ -756,6 +815,25 @@ function showQuickView(productId) {
             </div>
         </div>
     `;
+    
+    // Gallery navigation
+    if (hasMultiple) {
+        let currentQvIndex = 0;
+        const mainImg = content.querySelector('#qvMainImg');
+        const thumbs = content.querySelectorAll('.qv-thumb');
+        
+        function goToQvImage(idx) {
+            currentQvIndex = (idx + images.length) % images.length;
+            mainImg.src = images[currentQvIndex];
+            thumbs.forEach((t, i) => t.classList.toggle('active', i === currentQvIndex));
+        }
+        
+        content.querySelector('#qvPrev').addEventListener('click', () => goToQvImage(currentQvIndex - 1));
+        content.querySelector('#qvNext').addEventListener('click', () => goToQvImage(currentQvIndex + 1));
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', () => goToQvImage(parseInt(thumb.dataset.index)));
+        });
+    }
     
     // Quantity controls
     const qtyInput = content.querySelector('#quickViewQty');

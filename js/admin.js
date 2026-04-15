@@ -1236,23 +1236,39 @@ function loadProducts() {
         searchInput.addEventListener('input', handleProductSearch);
     }
     
-    // Image file input handler
+    // Image file input handler - MULTI IMAGE
     const imageFileInput = document.getElementById('productImageFile');
     if (imageFileInput) {
         imageFileInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
+            const files = Array.from(this.files);
+            if (!files.length) return;
+            files.forEach(file => {
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('productImage').value = e.target.result;
-                    const preview = document.getElementById('imagePreview');
-                    const previewImg = document.getElementById('imagePreviewImg');
-                    previewImg.src = e.target.result;
-                    preview.style.display = 'block';
+                reader.onload = async function(e) {
+                    await addImagePreview(e.target.result);
                 };
                 reader.readAsDataURL(file);
-            }
+            });
+            // Reset file input so same files can be re-selected
+            this.value = '';
         });
+
+        // Drag & drop support
+        const uploadArea = document.getElementById('multiImageUploadArea');
+        if (uploadArea) {
+            uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
+            uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('drag-over');
+                const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+                files.forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = async function(ev) { await addImagePreview(ev.target.result); };
+                    reader.readAsDataURL(file);
+                });
+            });
+        }
     }
 
     // Save product handler - CRITICAL: must always be attached
@@ -1263,6 +1279,26 @@ function loadProducts() {
         saveBtn.addEventListener('click', saveProduct);
     } else {
         console.error('❌ saveProduct button NOT FOUND!');
+    }
+
+    // Reset multi-image state when modal is opened for new product (via Add Product button)
+    const productModalEl = document.getElementById('productModal');
+    if (productModalEl && !productModalEl._resetHandlerAttached) {
+        productModalEl.addEventListener('show.bs.modal', function() {
+            // Only clear if not editing (editingId is set by editProduct)
+            const form = document.getElementById('productForm');
+            if (!form.dataset.editingId) {
+                clearImagePreviews();
+            }
+        });
+        productModalEl.addEventListener('hidden.bs.modal', function() {
+            const form = document.getElementById('productForm');
+            delete form.dataset.editingId;
+            document.querySelector('#productModal .modal-title').textContent = 'Add New Product';
+            clearImagePreviews();
+            form.reset();
+        });
+        productModalEl._resetHandlerAttached = true;
     }
     
     if (!adminProducts || adminProducts.length === 0) {
@@ -1326,13 +1362,14 @@ function editProduct(id) {
     document.getElementById('productImage').value = product.image;
     document.getElementById('productBadge').value = product.badge || '';
     
-    // Show image preview when editing
-    if (product.image) {
-        const preview = document.getElementById('imagePreview');
-        const previewImg = document.getElementById('imagePreviewImg');
-        previewImg.src = product.image;
-        preview.style.display = 'block';
+    // Load images into multi-image preview
+    clearImagePreviews();
+    if (product.images && product.images.length > 0) {
+        currentProductImages = [...product.images];
+    } else if (product.image) {
+        currentProductImages = [product.image];
     }
+    renderImagePreviews();
     
     // Store editing ID
     document.getElementById('productForm').dataset.editingId = id;
@@ -1399,6 +1436,124 @@ function filterProducts(searchTerm) {
     `}).join('');
 }
 
+// ============ MULTI-IMAGE HELPERS ============
+// Stored images for current product being added/edited
+let currentProductImages = [];
+
+// Compress image to reduce localStorage size
+function compressImage(dataUrl, maxWidth = 800, quality = 0.7) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+
+            // Scale down if wider than maxWidth
+            if (width > maxWidth) {
+                height = Math.round(height * maxWidth / width);
+                width = maxWidth;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+        };
+        img.onerror = function() {
+            resolve(dataUrl); // fallback to original
+        };
+        img.src = dataUrl;
+    });
+}
+
+async function addImagePreview(dataUrl) {
+    // Compress before storing
+    const compressed = await compressImage(dataUrl);
+    currentProductImages.push(compressed);
+    renderImagePreviews();
+}
+
+function removeImagePreview(index) {
+    currentProductImages.splice(index, 1);
+    renderImagePreviews();
+}
+
+function setMainImage(index) {
+    if (index === 0) return;
+    const img = currentProductImages.splice(index, 1)[0];
+    currentProductImages.unshift(img);
+    renderImagePreviews();
+}
+
+function renderImagePreviews() {
+    const container = document.getElementById('imagePreviews');
+    const placeholder = document.getElementById('uploadPlaceholder');
+    const addMoreBtn = document.getElementById('addMoreImages');
+    if (!container) return;
+
+    if (currentProductImages.length === 0) {
+        container.innerHTML = '';
+        if (placeholder) placeholder.style.display = '';
+        if (addMoreBtn) addMoreBtn.style.display = 'none';
+        // Clear the hidden input
+        document.getElementById('productImage').value = '';
+        return;
+    }
+
+    if (placeholder) placeholder.style.display = 'none';
+    if (addMoreBtn) addMoreBtn.style.display = '';
+
+    container.innerHTML = currentProductImages.map((img, i) => `
+        <div class="image-preview-item ${i === 0 ? 'main-image' : ''}" draggable="true" data-index="${i}">
+            <img src="${img}" alt="Preview ${i + 1}">
+            <div class="image-preview-overlay">
+                ${i === 0 ? '<span class="main-badge">Main</span>' : `<button type="button" class="btn-set-main" onclick="setMainImage(${i})" title="Set as main"><i class="fas fa-star"></i></button>`}
+                <button type="button" class="btn-remove-img" onclick="removeImagePreview(${i})" title="Remove"><i class="fas fa-times"></i></button>
+            </div>
+            <span class="image-number">${i + 1}</span>
+        </div>
+    `).join('');
+
+    // Update main hidden input with first image for backwards compat
+    document.getElementById('productImage').value = currentProductImages[0] || '';
+
+    // Enable drag-to-reorder
+    enableImageDragReorder();
+}
+
+function enableImageDragReorder() {
+    const container = document.getElementById('imagePreviews');
+    if (!container) return;
+    const items = container.querySelectorAll('.image-preview-item');
+    items.forEach(item => {
+        item.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', item.dataset.index);
+            item.classList.add('dragging');
+        });
+        item.addEventListener('dragend', () => item.classList.remove('dragging'));
+        item.addEventListener('dragover', (e) => { e.preventDefault(); item.classList.add('drag-target'); });
+        item.addEventListener('dragleave', () => item.classList.remove('drag-target'));
+        item.addEventListener('drop', (e) => {
+            e.preventDefault();
+            item.classList.remove('drag-target');
+            const fromIdx = parseInt(e.dataTransfer.getData('text/plain'));
+            const toIdx = parseInt(item.dataset.index);
+            if (fromIdx !== toIdx) {
+                const moved = currentProductImages.splice(fromIdx, 1)[0];
+                currentProductImages.splice(toIdx, 0, moved);
+                renderImagePreviews();
+            }
+        });
+    });
+}
+
+function clearImagePreviews() {
+    currentProductImages = [];
+    renderImagePreviews();
+}
+
 // Save Product (Add or Update) - with Firebase sync
 async function saveProduct() {
         console.log('saveProduct called');
@@ -1417,7 +1572,7 @@ async function saveProduct() {
         { id: 'productName', label: 'Name', required: true },
         { id: 'productCategory', label: 'Category', required: true },
         { id: 'productPrice', label: 'Price', required: true },
-        { id: 'productImage', label: 'Image', required: !document.getElementById('productForm').dataset.editingId },
+        { id: 'productImage', label: 'Image', required: !document.getElementById('productForm').dataset.editingId && currentProductImages.length === 0 },
         { id: 'productDescription', label: 'Description', required: true },
         { id: 'productStock', label: 'Stock', required: true },
     ];
@@ -1461,7 +1616,8 @@ async function saveProduct() {
         originalPrice: parseFloat(document.getElementById('productOriginalPrice').value) || null,
         stock: parseInt(document.getElementById('productStock').value) || 0,
         description: document.getElementById('productDescription').value.trim(),
-        image: document.getElementById('productImage').value.trim() || undefined,
+        image: currentProductImages[0] || document.getElementById('productImage').value.trim() || undefined,
+        images: currentProductImages.length > 0 ? [...currentProductImages] : undefined,
         badge: document.getElementById('productBadge').value.trim(),
     };
     
@@ -1509,17 +1665,46 @@ async function saveProduct() {
     
     // Save to localStorage (shared with main site)
     console.log('💾 Saving to localStorage, adminProducts count:', adminProducts.length);
-    console.log('💾 Products to save:', JSON.stringify(adminProducts));
-    localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(adminProducts));
-    console.log('💾 Saved! Verifying localStorage:', localStorage.getItem(PRODUCTS_STORAGE_KEY));
+    try {
+        localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(adminProducts));
+    } catch (storageError) {
+        // Quota exceeded — try re-compressing all images more aggressively
+        console.warn('Storage quota exceeded, compressing images further...');
+        try {
+            for (let p of adminProducts) {
+                if (p.images && p.images.length > 0) {
+                    const compressed = [];
+                    for (let img of p.images) {
+                        if (img.startsWith('data:')) {
+                            compressed.push(await compressImage(img, 600, 0.5));
+                        } else {
+                            compressed.push(img);
+                        }
+                    }
+                    p.images = compressed;
+                    p.image = compressed[0];
+                } else if (p.image && p.image.startsWith('data:')) {
+                    p.image = await compressImage(p.image, 600, 0.5);
+                }
+            }
+            localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(adminProducts));
+        } catch (e2) {
+            // Still too large — remove this product and alert
+            if (!isEditing) {
+                adminProducts.pop();
+            }
+            showAdminToast('Storage full! Images are too large. Try using fewer or smaller images, or use image URLs instead.', 'error');
+            return;
+        }
+    }
+    console.log('💾 Saved successfully');
     
     // Close modal first
     const modal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
     if (modal) modal.hide();
     form.reset();
-    // Reset image preview and file input
-    const preview = document.getElementById('imagePreview');
-    if (preview) preview.style.display = 'none';
+    // Reset multi-image previews and file input
+    clearImagePreviews();
     const fileInput = document.getElementById('productImageFile');
     if (fileInput) fileInput.value = '';
     
