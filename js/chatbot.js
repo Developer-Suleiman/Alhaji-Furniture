@@ -1,6 +1,143 @@
 // Alhaji Furniture AI Chatbot
 
-// Knowledge Base for the chatbot
+// ── Arabic Knowledge Base ──────────────────────────────────────────────────
+const knowledgeBaseAr = {
+    greetings: {
+        patterns: ['مرحبا', 'مرحباً', 'أهلا', 'أهلاً', 'هلا', 'السلام', 'صباح الخير', 'مساء الخير', 'هاي', 'هلو'],
+        responses: [
+            "أهلاً وسهلاً! 👋 مرحباً بك في أثاث الحاجي. كيف يمكنني مساعدتك اليوم؟",
+            "مرحباً! أنا مساعدك في أثاث الحاجي. بماذا يمكنني خدمتك؟",
+            "أهلاً بك! 🪑 أنا هنا لأساعدك في إيجاد الأثاث المثالي. ماذا تبحث عن؟"
+        ]
+    },
+    products: {
+        patterns: ['منتجات', 'أثاث', 'ماذا عندكم', 'ماذا لديكم', 'مجموعة', 'قطع', 'عرض', 'أرني', 'كتالوج'],
+        responses: [
+            "لدينا مجموعة واسعة من الأثاث الفاخر! 🛋️\n\n• **غرفة المعيشة**: أرائك، كراسي، طاولات\n• **غرفة النوم**: أسرة، طاولات سرير، خزائن\n• **غرفة الطعام**: طاولات، كراسي، بار\n• **المكتب**: مكاتب، كراسي مكتب، أرفف\n\nهل تريد استكشاف قسم بعينه؟"
+        ]
+    },
+    living: {
+        patterns: ['غرفة معيشة', 'غرفة المعيشة', 'أريكة', 'كنبة', 'أنتريه', 'صالة', 'صالون', 'طقم جلوس'],
+        responses: [
+            "مجموعة غرفة المعيشة لدينا تشمل:\n\n🛋️ **أريكة الراحة العصرية** - 25,000 ج.م\n🪑 **كرسي إسكندنافي** - 12,000 ج.م\n🛋️ **أريكة زاوية L** - 38,000 ج.م\n\nجميع القطع مضمونة 5 سنوات! هل تريد تفاصيل أكثر؟"
+        ]
+    },
+    bedroom: {
+        patterns: ['غرفة نوم', 'غرفة النوم', 'سرير', 'تخت', 'مرتبة', 'خزانة', 'دولاب', 'كومودينو'],
+        responses: [
+            "حوّل غرفة نومك مع مجموعتنا:\n\n🛏️ **سرير كينج أنيق** - 18,000 ج.م\n🪑 **كومودينو فاخر** - 5,000 ج.م\n🚪 **خزانة مع مرايا** - 26,000 ج.م\n\nالتركيب مجاني! هل تريد معرفة المزيد؟"
+        ]
+    },
+    dining: {
+        patterns: ['غرفة طعام', 'غرفة الطعام', 'طاولة طعام', 'طاولة سفرة', 'سفرة', 'كراسي طعام', 'أوضة سفرة'],
+        responses: [
+            "مجموعة غرف الطعام لدينا:\n\n🍽️ **طاولة طعام فخمة** - 30,000 ج.م (تتسع لـ 8 أشخاص)\n🪑 **طقم كراسي طعام** - 14,000 ج.م (4 كراسي)\n🪑 **طقم كراسي بار** - 8,000 ج.م (كرسيان)\n\nمثالية للتجمعات العائلية! هل تحتاج أبعاد معينة؟"
+        ]
+    },
+    office: {
+        patterns: ['مكتب', 'كرسي مكتب', 'رف كتب', 'مكتبة', 'أوضة مكتب', 'ديسك', 'شغل', 'هوم أوفيس'],
+        responses: [
+            "اصنع مساحة عمل مثالية:\n\n💺 **كرسي مكتب إرغونومي** - 9,000 ج.م\n🖥️ **مكتب قائم برو** - 16,000 ج.م\n📚 **رف كتب** - 7,000 ج.م\n\nمصممة للراحة والإنتاجية! هل تريد التفاصيل؟"
+        ]
+    },
+    pricing: {
+        patterns: ['سعر', 'أسعار', 'تكلفة', 'كم سعر', 'كم الثمن', 'غالي', 'رخيص', 'ميزانية', 'تكلف كام', 'بكام'],
+        responses: [
+            "تتراوح أسعارنا بين الاقتصادي والفاخر:\n\n💰 **اقتصادي**: 5,000 - 10,000 ج.م\n💎 **متوسط**: 10,000 - 20,000 ج.م\n👑 **فاخر**: 20,000+ ج.م\n\nنوفر أيضاً خيارات تقسيط وعروض موسمية! ما هي ميزانيتك؟"
+        ]
+    },
+    delivery: {
+        patterns: ['توصيل', 'شحن', 'توصيل مجاني', 'متى يوصل', 'كم يأخذ التوصيل', 'يوصلوا فين'],
+        responses: [
+            "📦 **معلومات التوصيل**:\n\n• **توصيل مجاني** للطلبات فوق 5,000 ج.م\n• التوصيل العادي: 3-5 أيام عمل\n• التوصيل السريع: 1-2 يوم (+500 ج.م)\n• خدمة التوصيل الراقي: تشمل التركيب\n\nنوصل لجميع أنحاء القاهرة ومصر! ما موقعك؟"
+        ]
+    },
+    returns: {
+        patterns: ['استرداد', 'إرجاع', 'ارجاع', 'استبدال', 'رد فلوس', 'مش عاجبني', 'سياسة الإرجاع'],
+        responses: [
+            "🔄 **سياسة الإرجاع**:\n\n• إرجاع مجاني خلال **30 يوماً**\n• يجب أن تكون القطعة بحالتها الأصلية\n• استلام مجاني للقطع المعيبة\n• استرداد كامل خلال 5-7 أيام عمل\n\nهل تريد بدء عملية إرجاع؟ تواصل مع فريق الدعم!"
+        ]
+    },
+    warranty: {
+        patterns: ['ضمان', 'كفالة', 'غطاء', 'تلف', 'معطل', 'مكسور'],
+        responses: [
+            "🛡️ **تغطية الضمان**:\n\n• ضمان **5 سنوات** على جميع قطع الأثاث\n• يغطي عيوب التصنيع\n• إصلاح أو استبدال مجاني\n• ضمان ممتد متاح (+سنتان)\n\nرضاك هو أولويتنا!"
+        ]
+    },
+    payment: {
+        patterns: ['دفع', 'طريقة الدفع', 'بطاقة', 'تقسيط', 'فيزا', 'ماستر', 'كاش', 'كريدت'],
+        responses: [
+            "💳 **طرق الدفع**:\n\n• بطاقات الائتمان/الخصم (Visa, Mastercard, Amex)\n• PayPal\n• Apple Pay و Google Pay\n• **تقسيط**: 0% فائدة لـ 12 شهراً\n• الدفع الآن واستلام لاحقاً (Afterpay)\n\nجميع المعاملات آمنة! أي طريقة تناسبك؟"
+        ]
+    },
+    contact: {
+        patterns: ['تواصل', 'تواصل معنا', 'هاتف', 'تليفون', 'بريد', 'ايميل', 'دعم', 'خدمة عملاء', 'كلم حد', 'موظف'],
+        responses: [
+            "📞 **تواصل معنا**:\n\n• **هاتف**: 1234 2275 2 20+\n• **بريد**: info@hajifurniture.com\n• **المواعيد**: السبت-الخميس 10ص-10م، الجمعة 2م-10م\n• **العنوان**: شارع عباس العقاد، مدينة نصر، القاهرة\n\nأو املأ نموذج التواصل على الموقع!"
+        ]
+    },
+    location: {
+        patterns: ['موقع', 'عنوان', 'فين', 'المحل', 'المعرض', 'الفرع', 'أزورهم', 'زيارة'],
+        responses: [
+            "📍 **زر معرضنا**:\n\nشارع عباس العقاد\nمدينة نصر\nالقاهرة، مصر\n\n**المواعيد**:\n• السبت-الخميس: 10ص - 10م\n• الجمعة: 2م - 10م\n\nتعال وشاهد أثاثنا بنفسك!"
+        ]
+    },
+    custom: {
+        patterns: ['مخصص', 'تخصيص', 'طلب خاص', 'حسب الطلب', 'قياس خاص', 'لون مختلف', 'تفصيل'],
+        responses: [
+            "✨ **الطلبات المخصصة**:\n\nنعم! نوفر أثاثاً مخصصاً:\n• اختر أبعادك\n• اختر الأقمشة والألوان\n• تشطيبات مخصصة متاحة\n• التسليم خلال 4-6 أسابيع\n\nتواصل معنا على custom@hajifurniture.com لنناقش تصورك!"
+        ]
+    },
+    discount: {
+        patterns: ['خصم', 'عرض', 'تخفيض', 'كوبون', 'بروموكود', 'عروض', 'تنزيلات', 'أوفر'],
+        responses: [
+            "🏷️ **العروض الحالية**:\n\n• **WELCOME10**: خصم 10% على أول طلب\n• **FREESHIP**: شحن مجاني للطلبات فوق 5,000 ج.م\n• تخفيضات موسمية تصل لـ 40%\n• المشتركون في النشرة البريدية يحصلون على عروض حصرية!\n\nاشترك في نشرتنا للمزيد من العروض!"
+        ]
+    },
+    quality: {
+        patterns: ['جودة', 'خامة', 'خشب', 'قماش', 'جلد', 'متين', 'تحمل', 'صناعة'],
+        responses: [
+            "🌟 **وعدنا بالجودة**:\n\n• بناء من الأخشاب الصلبة\n• أقمشة فاخرة وجلد أصلي\n• مواد صديقة للبيئة ومستدامة\n• صنع يدوي بأيدي حرفيين مهرة\n• اختبار جودة صارم\n\n25+ سنة من التميز!"
+        ]
+    },
+    thanks: {
+        patterns: ['شكرا', 'شكراً', 'ممنون', 'متشكر', 'يعطيك العافية', 'تسلم', 'مشكور'],
+        responses: [
+            "العفو! 😊 هل هناك أي شيء آخر يمكنني مساعدتك به؟",
+            "بكل سرور! لا تتردد في السؤال إن كان لديك أي استفسار آخر!",
+            "يسعدني خدمتك! 🪑 أخبرني إن احتجت أي شيء آخر!"
+        ]
+    },
+    goodbye: {
+        patterns: ['مع السلامة', 'باي', 'وداعاً', 'إلى اللقاء', 'تصبح على خير', 'أوداعك', 'خلاص'],
+        responses: [
+            "مع السلامة! 👋 شكراً للتواصل مع أثاث الحاجي. أتمنى لك يوماً رائعاً!",
+            "إلى اللقاء! لا تنسَ الاطلاع على أحدث مجموعتنا! 🛋️",
+            "باي! لا تتردد في العودة في أي وقت. تسوق سعيد! 🏠"
+        ]
+    },
+    order_status: {
+        patterns: ['حالة الطلب', 'أين طلبي', 'تتبع', 'تتبع الطلب', 'طلبي فين', 'وصل طلبي'],
+        responses: [
+            "📦 **تتبع طلبك**:\n\nللتحقق من حالة طلبك:\n1. زر موقعنا\n2. انقر على 'تتبع الطلب' في الأسفل\n3. أدخل رقم الطلب والبريد الإلكتروني\n\nأو تواصل مع الدعم برقم طلبك!"
+        ]
+    },
+    assembly: {
+        patterns: ['تركيب', 'تجميع', 'تركيب الأثاث', 'إزاي يتركب', 'خدمة التركيب'],
+        responses: [
+            "🔧 **خدمات التركيب**:\n\n• بنفسك: تعليمات سهلة مرفقة\n• **التركيب الاحترافي**: (+500 ج.م)\n• فيديوهات تعليمية متاحة أونلاين\n• جميع الأدوات مضمّنة في الطرد\n\nهل تحتاج مساعدة في التركيب؟ نحن هنا!"
+        ]
+    }
+};
+
+// Arabic default responses
+const defaultResponsesAr = [
+    "لم أفهم تماماً. هل يمكنك إعادة الصياغة؟ أو اسأل عن منتجاتنا، التوصيل، الإرجاع، أو تواصل معنا! 🤔",
+    "عفواً، لم أستوعب ذلك جيداً. حاول السؤال عن:\n• مجموعة الأثاث\n• خيارات التوصيل\n• سياسة الإرجاع\n• تواصل مع الدعم",
+    "ما زلت أتعلم! للأسئلة المعقدة، تواصل مع فريق الدعم على 1234 2275 2 20+ أو info@hajifurniture.com 📞"
+];
+
+// ── English Knowledge Base ─────────────────────────────────────────────────
 const knowledgeBase = {
     greetings: {
         patterns: ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening', 'howdy', 'greetings'],
@@ -176,10 +313,22 @@ class HajiChatbot {
             });
         });
         
-        // Initial greeting (delayed)
+        // Initial greeting (delayed) – respects current language
         setTimeout(() => {
-            this.addBotMessage("Hello! 👋 I'm your Alhaji Furniture assistant. How can I help you today?");
+            const isAr = typeof getCurrentLanguage === 'function' && getCurrentLanguage() === 'ar';
+            this.addBotMessage(isAr
+                ? "أهلاً! 👋 أنا مساعدك في أثاث الحاجي. كيف يمكنني مساعدتك اليوم؟"
+                : "Hello! 👋 I'm your Alhaji Furniture assistant. How can I help you today?"
+            );
         }, 1000);
+
+        // Re-greet and update placeholder when language changes
+        window.addEventListener('languageChanged', (e) => {
+            const lang = e.detail.language;
+            if (this.input) {
+                this.input.placeholder = lang === 'ar' ? 'اكتب رسالتك...' : 'Type your message...';
+            }
+        });
     }
     
     toggleChat() {
@@ -274,34 +423,50 @@ class HajiChatbot {
     }
     
     getResponse(message) {
-        const lowerMessage = message.toLowerCase();
-        
-        // Check each category in knowledge base
-        for (const category in knowledgeBase) {
-            const { patterns, responses } = knowledgeBase[category];
-            
+        const isAr = typeof getCurrentLanguage === 'function' && getCurrentLanguage() === 'ar';
+        const activeKB = isAr ? knowledgeBaseAr : knowledgeBase;
+        const activeDefaults = isAr ? defaultResponsesAr : defaultResponses;
+        // Arabic is case-insensitive by nature; English needs toLowerCase
+        const normalised = isAr ? message : message.toLowerCase();
+
+        // Check each category in the active knowledge base
+        for (const category in activeKB) {
+            const { patterns, responses } = activeKB[category];
             for (const pattern of patterns) {
-                if (lowerMessage.includes(pattern)) {
+                if (normalised.includes(pattern)) {
                     return responses[Math.floor(Math.random() * responses.length)];
                 }
             }
         }
-        
+
         // Check for product-specific queries
-        if (this.containsProductQuery(lowerMessage)) {
-            return this.getProductResponse(lowerMessage);
+        if (this.containsProductQuery(normalised, isAr)) {
+            return this.getProductResponse(normalised, isAr);
         }
-        
+
         // Default response
-        return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        return activeDefaults[Math.floor(Math.random() * activeDefaults.length)];
     }
-    
-    containsProductQuery(message) {
+
+    containsProductQuery(message, isAr = false) {
+        if (isAr) {
+            const arKeywords = ['أريكة الراحة', 'سرير كينج أنيق', 'طاولة طعام فخمة', 'كرسي إرغونومي', 'مكتب قائم'];
+            return arKeywords.some(keyword => message.includes(keyword));
+        }
         const productKeywords = ['modern comfort', 'elegant king', 'executive dining', 'ergonomic', 'scandinavian', 'standing desk'];
         return productKeywords.some(keyword => message.includes(keyword));
     }
-    
-    getProductResponse(message) {
+
+    getProductResponse(message, isAr = false) {
+        if (isAr) {
+            if (message.includes('أريكة') || message.includes('كنبة')) {
+                return "🛋️ **أريكة الراحة العصرية** - 25,000 ج.م\n\n• تنجيد مخمل فاخر\n• تصميم 3 مقاعد\n• إطار خشبي صلب\n• متاحة بـ 5 ألوان\n• ⭐ 4.8/5 (124 تقييم)\n\nهل تريد إضافتها للسلة؟";
+            }
+            if (message.includes('سرير') || message.includes('تخت')) {
+                return "🛏️ **سرير كينج أنيق** - 18,000 ج.م\n\n• بناء من خشب البلوط الصلب\n• تصميم عصري بسيط\n• سهل التركيب\n• يناسب مرتبة كينج قياسية\n• ⭐ 4.9/5 (89 تقييم)\n\nهل تريد إضافته للسلة؟";
+            }
+            return "اختيار رائع! هذه من قطعنا الشهيرة. هل تريد تفاصيل أكثر أو تريد إضافتها للسلة؟";
+        }
         if (message.includes('modern comfort') || message.includes('sofa')) {
             return "🛋️ **Modern Comfort Sofa** - 25,000 EGP\n\n• Premium velvet upholstery\n• 3-seater design\n• Solid wood frame\n• Available in 5 colors\n• ⭐ 4.8/5 (124 reviews)\n\nWould you like to add it to your cart?";
         }

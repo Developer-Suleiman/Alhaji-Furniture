@@ -324,7 +324,7 @@ const translations = {
         'product.details': 'تفاصيل المنتج',
         
         // Chatbot
-        'chatbot.name': 'مساعد عيد',
+        'chatbot.name': 'مساعد الحاجي',
         'chatbot.online': 'متصل',
         'chatbot.products': 'المنتجات',
         'chatbot.delivery': 'التوصيل',
